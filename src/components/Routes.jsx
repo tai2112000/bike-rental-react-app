@@ -1,17 +1,22 @@
-import React from 'react'
+import React from "react";
 
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch } from "react-router-dom";
 
-import Dashboard from '../pages/Dashboard'
-import Customers from '../pages/Customers'
-
+import Dashboard from "../pages/Dashboard";
+import Areas from "../pages/Area";
+import Booking from "../pages/Booking";
+import Customers from "../pages/customer/Customers";
+import Owner from "../pages/owner/Owner";
 const Routes = () => {
-    return (
-        <Switch>
-            <Route path='/' exact component={Dashboard}/>
-            <Route path='/customers' component={Customers}/>
-        </Switch>
-    )
-}
+  return (
+    <Switch>
+      <Route path='/' exact component={Dashboard} />
+      <Route path='/areas' component={Areas} />
+      <Route path='/booking' component={Booking} />
+      <Route path='/customer' component={Customers} />
+      <Route path='/owner' component={Owner} />
+    </Switch>
+  );
+};
 
-export default Routes
+export default Routes;

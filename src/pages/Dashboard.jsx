@@ -168,7 +168,7 @@ const Dashboard = () => {
     <div>
       <h2 className='page-header'>Dashboard</h2>
       <div className='row'>
-        <div className='col-6'>
+        <div className='col-12'>
           <div className='row'>
             {statusCards.map((item, index) => (
               <div className='col-6' key={index}>

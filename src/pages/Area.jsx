@@ -24,15 +24,10 @@ const renderBody = (item, index) => (
   <tr key={index}>
     <td>{item.postalCode}</td>
     <td>{item.name}</td>
-    {/* <td>{item.email}</td>
-    <td>{item.phone}</td>
-    <td>{item.total_orders}</td>
-    <td>{item.total_spend}</td>
-    <td>{item.location}</td> */}
   </tr>
 );
 
-class Customers extends Component {
+class Areas extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -59,20 +54,22 @@ class Customers extends Component {
           <div className='col-12'>
             <div className='card'>
               <div className='card__body'>
-                <table>
-                  <thead>
-                    <th>Postal Code</th>
-                    <th>Name</th>
-                  </thead>
-                  <tbody>
-                    {listArea.map((item) => (
-                      <tr key={item.id}>
-                        <td>{item.postalCode}</td>
-                        <td>{item.name}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+                <div className='table-wrapper'>
+                  <table>
+                    <thead>
+                      <td>Postal Code</td>
+                      <td>Name</td>
+                    </thead>
+                    <tbody>
+                      {listArea.map((item) => (
+                        <tr key={item.id}>
+                          <td>{item.postalCode}</td>
+                          <td>{item.name}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
@@ -82,4 +79,4 @@ class Customers extends Component {
   }
 }
 
-export default Customers;
+export default Areas;
