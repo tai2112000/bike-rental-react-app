@@ -23,7 +23,7 @@ class Customers extends Component {
     console.log(listCustomer);
     return (
       <div>
-        <h2 className='page-header'>customers</h2>
+        <h2 className='page-header'>Customers</h2>
         <div className='row'>
           <div className='col-12'>
             <div className='card'>

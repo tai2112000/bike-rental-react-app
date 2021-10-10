@@ -49,7 +49,7 @@ class Areas extends Component {
     console.log(listArea);
     return (
       <div>
-        <h2 className='page-header'>customers</h2>
+        <h2 className='page-header'>Areas</h2>
         <div className='row'>
           <div className='col-12'>
             <div className='card'>
