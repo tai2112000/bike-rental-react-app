@@ -7,9 +7,11 @@ import Areas from "../pages/Area";
 import Booking from "../pages/Booking";
 import Customers from "../pages/customer/Customers";
 import Owner from "../pages/owner/Owner";
+import Login from "./login/Login";
 const Routes = () => {
   return (
     <Switch>
+      <Route path='/login' exact component={Login} />
       <Route path='/' exact component={Dashboard} />
       <Route path='/areas' component={Areas} />
       <Route path='/booking' component={Booking} />
