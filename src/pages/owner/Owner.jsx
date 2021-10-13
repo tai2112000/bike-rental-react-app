@@ -49,7 +49,7 @@ class Owner extends Component {
                           </td>
                           <td>{item.numberOfBikes}</td>
                           <td>{item.rating}</td>
-                          <td>{item.numberOFRating}</td>
+                          <td>{item.numberOfRatings}</td>
                           <td>Area name</td>
                         </tr>
                       ))}

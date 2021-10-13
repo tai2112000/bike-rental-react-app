@@ -1,36 +1,101 @@
 import React, { Component } from "react";
+import callApi from "../utils/apiCaller";
 import callApi_V2 from "../utils/apiCallerV2";
-
 class Booking extends Component {
   constructor(props) {
     super(props);
     this.state = {
       listBooking: [],
-      apiURL: "",
+      listCustomer: [],
+      listOwner: [],
     };
   }
 
   componentDidMount() {
-    callApi_V2("bookings", "GET", null).then((res) => {
+    callApi("bookings", "GET", null).then((res) => {
       this.setState({
         listBooking: res.data,
       });
     });
+    callApi_V2("admins/customers", "GET", null).then((res) => {
+      this.setState({
+        listCustomer: res.data,
+      });
+    });
+    callApi(`owners?size=23`, "GET", null).then((res) => {
+      this.setState({
+        listOwner: res.data.data,
+      });
+    });
   }
-  render() {
-    const { listBooking } = this.state;
 
-    console.log(listBooking);
+  onGetCustomerName = (customerId) => {
+    let customerName = "";
+    this.state.listCustomer.map((customer) => {
+      if (customerId === customer.id) {
+        customerName = customer.fullname;
+      }
+    });
+    return customerName;
+  };
+
+  onGetOwnerName = (ownerId) => {
+    let ownerName = "";
+    callApi(`owners/${ownerId}`, "GET", null).then((res) => {
+      ownerName = res.data.fullname;
+      console.log(res.data);
+    });
+    console.log(ownerName);
+  };
+
+  formatDate = (date, format = "mm/dd/yy") => {
+    let d = new Date(date);
+    const map = {
+      mm: d.getMonth() + 1,
+      dd: d.getDate(),
+      yy: d.getFullYear().toString().slice(-2),
+      yyyy: d.getFullYear(),
+    };
+    return format.replace(/mm|dd|yy/gi, (matched) => map[matched]);
+  };
+
+  renderRowBooking(data = []) {
+    let listRow = (
+      <tr>
+        <rd>No Row</rd>
+      </tr>
+    );
+    listRow = data.map((row, index) => {
+      return (
+        <tr key={index}>
+          <td>{this.onGetCustomerName(row.customerId)}</td>
+          <td>Owner Name</td>
+          <td>Bike</td>
+          <td>{this.formatDate(row.dayRent)}</td>
+          <td>{this.formatDate(row.dayReturnActual)}</td>
+          <td>{this.formatDate(row.dayReturnExpected)}</td>
+          <td>{`${row.price}VND`}</td>
+          {/* <td>Test</td> */}
+          <td>{row.status}</td>
+        </tr>
+      );
+    });
+    return listRow;
+  }
+
+  render() {
+    const { listBooking, listOwner } = this.state;
+    console.log(listOwner);
     return (
       <div>
-        <h2 className='page-header'>Booking</h2>
+        <h2 className='page-header'>Bookings</h2>
         <div className='row'>
           <div className='col-12'>
             <div className='card'>
               <div className='card__body'>
                 <div className='table-wrapper'>
                   <table>
-                    <thead>
+                    <tr>
                       <td>Customer name</td>
                       <td>Owner Name</td>
                       <td>Bike</td>
@@ -38,32 +103,10 @@ class Booking extends Component {
                       <td>Day return Actual</td>
                       <td>Day return Expected</td>
                       <td>Price</td>
-                      <td>Payment method</td>
-                    </thead>
-                    <tbody>
-                      {/* <tr>
-                        <td>Test</td>
-                        <td>Test</td>
-                        <td>Test</td>
-                        <td>Test</td>
-                        <td>Test</td>
-                        <td>Test</td>
-                        <td>Test</td>
-                        <td>Test</td>
-                      </tr> */}
-                      {/* {listBooking.map((item) => (
-                        <tr key={item.id}>
-                          <td>Test</td>
-                          <td>Test</td>
-                          <td>Test</td>
-                          <td>Test</td>
-                          <td>Test</td>
-                          <td>Test</td>
-                          <td>Test</td>
-                          <td>Test</td>
-                        </tr>
-                      ))} */}
-                    </tbody>
+                      {/* <td>Payment method</td> */}
+                      <td>Status</td>
+                    </tr>
+                    <tbody>{this.renderRowBooking(listBooking)}</tbody>
                   </table>
                 </div>
               </div>

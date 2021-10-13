@@ -1,8 +1,4 @@
 import React, { Component } from "react";
-
-import Table from "../components/table/Table";
-
-import customerList from "../assets/JsonData/customers-list.json";
 import callApi from "../utils/apiCaller";
 
 const customerTableHead = [
@@ -43,6 +39,7 @@ class Areas extends Component {
       });
     });
   }
+
   render() {
     const { listArea } = this.state;
 

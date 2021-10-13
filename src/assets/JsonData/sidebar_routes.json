@@ -5,18 +5,23 @@
     "icon": "bx bx-category-alt"
   },
   {
-    "display_name": "Booking",
-    "route": "/booking",
+    "display_name": "Bookings",
+    "route": "/bookings",
     "icon": "bx bx-package"
   },
   {
-    "display_name": "Customer",
-    "route": "/customer",
+    "display_name": "Customers",
+    "route": "/customers",
     "icon": "bx bx-user-pin"
   },
   {
-    "display_name": "Owner",
-    "route": "/owner",
+    "display_name": "Owners",
+    "route": "/owners",
+    "icon": "bx bx-user-pin"
+  },
+  {
+    "display_name": "Campaigns",
+    "route": "/campaigns",
     "icon": "bx bx-user-pin"
   },
   {

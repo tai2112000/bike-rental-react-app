@@ -1,0 +1,8 @@
+.groupPaging {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.onClick {
+  cursor: pointer;
+}
