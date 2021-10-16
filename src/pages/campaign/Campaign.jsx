@@ -23,19 +23,21 @@ class Campaign extends Component {
   componentDidMount() {
     callApi("campaigns?page=1", "GET", null).then((res) => {
       // res = null => not display btn next
-      if (res === null) {
+      if (res === null || res.data.data.length > 8) {
         this.setState({
           showNext: false,
+          listCampaign: res.data.data,
+        });
+      } else {
+        this.setState({
+          listCampaign: res.data.data,
+          showNext: true,
         });
       }
-      this.setState({
-        listCampaign: res.data.data,
-        showNext: true,
-      });
     });
-    callApi("areas?page=1", "GET", null).then((res) => {
+    callApi("areas", "GET", null).then((res) => {
       this.setState({
-        areaOptions: res.data.data,
+        areaOptions: res.data,
       });
     });
   }
@@ -50,7 +52,7 @@ class Campaign extends Component {
       ).then((res) => {
         if (prevState.listCampaign === this.state.listCampaign) {
           // res < 8 => dont display next
-          if (res.data.length < 8) {
+          if (res.data.length < 8 || res.data.length > 8) {
             this.setState({
               showNext: false,
             });
@@ -94,6 +96,16 @@ class Campaign extends Component {
     return format.replace(/mm|dd|yy/gi, (matched) => map[matched]);
   };
 
+  ongetAreaName(areaId) {
+    let areaName = "";
+    this.state.areaOptions.map((area) => {
+      if (areaId === area.id) {
+        areaName = area.name;
+      }
+    });
+    return areaName;
+  }
+
   onNext(currentPage) {
     if (currentPage === this.state.pages) {
       this.setState({
@@ -118,7 +130,7 @@ class Campaign extends Component {
       label: item.name,
       value: item.id,
     }));
-
+    console.log("asasa:" + this.state.showNext);
     return (
       <div>
         <h2 className='page-header'>Campaigns</h2>
@@ -127,7 +139,7 @@ class Campaign extends Component {
           <Select
             className='col-6'
             style={{ marginBottom: "20px" }}
-            defaultValue={options[0]}
+            // defaultValue={options[0]}
             onChange={(value) =>
               this.setState({
                 selectedArea: value,
@@ -151,7 +163,7 @@ class Campaign extends Component {
                       {listCampaign.map((item) => (
                         <tr key={item.id}>
                           <td>{item.description}</td>
-                          <td>Area</td>
+                          <td>{this.ongetAreaName(item.areaId)}</td>
                           <td>{this.formatDate(item.expiredDate)}</td>
                           <td>{this.formatDate(item.startingDate)}</td>
                           <td>Status</td>

@@ -8,6 +8,8 @@ class Booking extends Component {
       listBooking: [],
       listCustomer: [],
       listOwner: [],
+      listBikeId: [],
+      bikeInfo: "",
     };
   }
 
@@ -15,6 +17,7 @@ class Booking extends Component {
     callApi("bookings", "GET", null).then((res) => {
       this.setState({
         listBooking: res.data,
+        listBikeId: res.data.bikeId,
       });
     });
     callApi_V2("admins/customers", "GET", null).then((res) => {
@@ -43,10 +46,18 @@ class Booking extends Component {
     let ownerName = "";
     callApi(`owners/${ownerId}`, "GET", null).then((res) => {
       ownerName = res.data.fullname;
-      console.log(res.data);
     });
     console.log(ownerName);
   };
+
+  // async onGetBikeInformation(bikeId) {
+  //   // let bikeName = "";
+  //   // callApi(`bikes/${bikeId}`, "Get", null).then((res) => {
+  //   //   console.log("BIke Name" + res.bikeName);
+  //   // });
+  //   const name = await callApi(`bikes/${bikeId}`, "Get", null);
+  //   console.log(name.data.categoryName);
+  // }
 
   formatDate = (date, format = "mm/dd/yy") => {
     let d = new Date(date);
@@ -84,8 +95,8 @@ class Booking extends Component {
   }
 
   render() {
-    const { listBooking, listOwner } = this.state;
-    console.log(listOwner);
+    const { listBooking, listOwner, listBikeId } = this.state;
+    console.log(listBikeId);
     return (
       <div>
         <h2 className='page-header'>Bookings</h2>

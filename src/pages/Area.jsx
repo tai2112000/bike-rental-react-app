@@ -33,9 +33,9 @@ class Areas extends Component {
   }
 
   componentDidMount() {
-    callApi("areas?page=1", "GET", null).then((res) => {
+    callApi("areas", "GET", null).then((res) => {
       this.setState({
-        listArea: res.data.data,
+        listArea: res.data,
       });
     });
   }

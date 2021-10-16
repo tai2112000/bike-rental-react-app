@@ -1,0 +1,48 @@
+.containerSearch {
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 30px;
+}
+
+.SearchField {
+  position: relative;
+  height: 50px;
+  background-color: var(--main-bg);
+  display: flex;
+  align-items: center;
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.SearchField > input {
+  height: 100%;
+  width: 100%;
+  padding: 10px 60px 10px 20px;
+  font-size: 1rem;
+  border-radius: var(--border-radius);
+  color: var(--txt-color);
+  background-color: var(--main-bg);
+}
+
+.SearchField > i {
+  font-size: 1.5rem;
+  position: absolute;
+  right: 20px;
+}
+
+.buttonSearch {
+  margin-left: 20px;
+  position: relative;
+  height: 50px;
+  width: 150px;
+  text-align: center;
+  background-color: var(--main-bg);
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.buttonSearch:hover {
+  background-color: blue;
+}
