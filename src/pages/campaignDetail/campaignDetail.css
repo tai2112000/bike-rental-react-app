@@ -68,7 +68,8 @@
   height: 50px;
   width: 300px;
   text-align: center;
-  background-color: green;
+  background-color: rgb(90, 226, 90);
+  color: red;
   box-shadow: var(--box-shadow);
   border-radius: var(--border-radius);
   overflow: hidden;

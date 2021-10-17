@@ -106,6 +106,29 @@ class Campaign extends Component {
     return areaName;
   }
 
+  // async onDelete(id) {
+  //   console.log();
+  //   callApi("campaigns", "DELETE", JSON.stringify(id)).then((res) => {
+  //     console.log(res);
+  //   });
+  // }
+  async onDelete(id) {
+    // POST request using fetch with async/await
+    const requestOptions = {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(id),
+    };
+    const response = await fetch(
+      "http://52.74.12.123/api/v1/campaigns",
+      requestOptions
+    );
+    const res = await response.json();
+    if (res === true) {
+      window.location.reload();
+    }
+  }
+
   onNext(currentPage) {
     if (currentPage === this.state.pages) {
       this.setState({
@@ -134,8 +157,8 @@ class Campaign extends Component {
     return (
       <div>
         <h2 className='page-header'>Campaigns</h2>
-        <Link to="/createCampaign">
-          <button className="btn-create">Create Campaign</button>
+        <Link to='/createCampaign'>
+          <button className='btn-create'>Create Campaign</button>
         </Link>
         <div className='row'>
           <h3 className='col-2'>Select Area</h3>
@@ -160,7 +183,7 @@ class Campaign extends Component {
                       <td>Area</td>
                       <td>Starting Date</td>
                       <td>Expired Date</td>
-                      {/* <td>Status</td> */}
+                      <td>Status</td>
                       <td>Event</td>
                     </thead>
                     <tbody>
@@ -171,12 +194,26 @@ class Campaign extends Component {
                           <td>{this.formatDate(item.startingDate)}</td>
                           <td>{this.formatDate(item.expiredDate)}</td>
                           <td>
+                            {item.status === 1 ? "Unavailable" : "Available"}
+                          </td>
+                          <td className='containerBtn'>
                             <Link
                               to={`campaignDetail/${item.id}/edit`}
                               className='btnView'
                             >
                               View
                             </Link>
+                            {item.status !== 1 ? (
+                              <button
+                                type='submit'
+                                className='btnDelete'
+                                onClick={() => this.onDelete(item.id)}
+                              >
+                                Delete
+                              </button>
+                            ) : (
+                              <></>
+                            )}
                           </td>
                         </tr>
                       ))}

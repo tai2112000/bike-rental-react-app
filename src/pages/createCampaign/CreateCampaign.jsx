@@ -21,7 +21,7 @@ class CreateCampaign extends Component {
     };
   }
 
- componentDidMount() {
+  componentDidMount() {
     callApi("areas", "GET", null).then((res) => {
       this.setState({
         listArea: res.data,
@@ -42,38 +42,30 @@ class CreateCampaign extends Component {
     e.preventDefault();
     console.log(this.state);
     console.log(this.state.selectedArea.value);
-    const {
-      txtDescription,
-      selectedArea,
-      dateStart,
-      dateEnd,
-
-    } = this.state;
-
+    const { txtDescription, selectedArea, dateStart, dateEnd } = this.state;
+    var { history } = this.props;
     callApi("campaigns", "POST", {
       description: txtDescription,
       areaId: selectedArea.value,
       startingDate: dateStart,
-      expiredDate: dateEnd
+      expiredDate: dateEnd,
     }).then((res) => {
       this.setState({
         isShowSuccessful: 1,
       });
-      this.timer = setTimeout(() => {
-        if (this.state.isShowSuccessful === 1)
-          this.setState({ isShowSuccessful: -1 });
-      }, 3 * 1000); // 3s
+      if (res) {
+        history.goBack();
+      }
+      // this.timer = setTimeout(() => {
+      //   if (this.state.isShowSuccessful === 1)
+      //     this.setState({ isShowSuccessful: -1 });
+      // }, 3 * 1000); // 3s
     });
   };
 
   render() {
-    const {
-      txtDescription,
-      dateStart,
-      dateEnd,
-      listArea,
-      isShowSuccessful
-    } = this.state;
+    const { txtDescription, dateStart, dateEnd, listArea, isShowSuccessful } =
+      this.state;
 
     const options = listArea.map((item) => ({
       label: item.name,
@@ -82,20 +74,19 @@ class CreateCampaign extends Component {
 
     return (
       <div>
-        <h2 className="page-header">Create Campaign</h2>
-        
+        <h2 className='page-header'>Create Campaign</h2>
+
         <form onSubmit={this.onSave}>
-          <div className="selectfiled">
+          <div className='selectfiled'>
             <label>Area: </label>
             <br />
             <Select
-              className="col-6"
+              className='col-6'
               onChange={(value) =>
                 this.setState({
-                    selectedArea: value,
+                  selectedArea: value,
                 })
               }
-            
               options={options}
             />
           </div>
@@ -103,10 +94,10 @@ class CreateCampaign extends Component {
             <label>Description: </label>
             <br />
             <textarea
-              className="textarea col-6"
-              type="text"
+              className='textarea col-6'
+              type='text'
               value={txtDescription}
-              name="txtDescription"
+              name='txtDescription'
               onChange={this.onChange}
             />
           </div>
@@ -114,10 +105,10 @@ class CreateCampaign extends Component {
             <label>Starting Date: </label>
             <br />
             <input
-              className="input col-2"
-              type="date"
+              className='input col-2'
+              type='date'
               value={dateStart}
-              name="dateStart"
+              name='dateStart'
               onChange={this.onChange}
             />
           </div>
@@ -125,14 +116,14 @@ class CreateCampaign extends Component {
             <label>End Date: </label>
             <br />
             <input
-              className="input col-2"
-              type="date"
+              className='input col-2'
+              type='date'
               value={dateEnd}
-              name="dateEnd"
+              name='dateEnd'
               onChange={this.onChange}
             />
           </div>
-          <button className="btn-create" type="submit">
+          <button className='btn-create' type='submit'>
             {/* <Link to="/campaigns">Create</Link> */}
             Create
           </button>

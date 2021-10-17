@@ -12,8 +12,8 @@ import Campaign from "../pages/campaign/Campaign";
 import Vouchers from "../pages/voucher/Vouchers";
 import CreateVoucher from "../pages/createVoucher/CreateVoucher";
 import CampaignDetail from "../pages/campaignDetail/campaignDetail";
-import CreateCampaign from "../pages/createCampaign/CreateCampaign"
-import CreateArea from "../pages/arena/CreateArea"
+import CreateCampaign from "../pages/createCampaign/CreateCampaign";
+import CreateArea from "../pages/arena/CreateArea";
 
 const Routes = () => {
   return (
@@ -31,7 +31,10 @@ const Routes = () => {
         path='/campaignDetail/:id/edit'
         component={({ match }) => <CampaignDetail match={match} />}
       />
-      <Route path='/createCampaign' component={CreateCampaign} />
+      <Route
+        path='/createCampaign'
+        component={({ history }) => <CreateCampaign history={history} />}
+      />
       <Route path='/createArea' component={CreateArea} />
     </Switch>
   );
