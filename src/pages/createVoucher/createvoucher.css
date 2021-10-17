@@ -14,12 +14,23 @@
 }
 
 .input {
-    height          : 15px;
+    height          : 30px;
     width           : max-content;
     background-color: var(--main-bg);
     box-shadow      : var(--box-shadow);
-    border-radius   : var(--border-radius);
+    border-radius   : 5px;
+    margin-top      : 5px;
 }
+
+.textarea {
+    height          : 80px;
+    width           : 40%;
+    background-color: var(--main-bg);
+    box-shadow      : var(--box-shadow);
+    border-radius   : 5px;
+    margin-top      : 5px;
+}
+
 
 .btnSub {
 
