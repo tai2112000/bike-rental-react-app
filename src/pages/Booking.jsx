@@ -44,11 +44,21 @@ class Booking extends Component {
 
   onGetOwnerName = (ownerId) => {
     let ownerName = "";
-    callApi(`owners/${ownerId}`, "GET", null).then((res) => {
-      ownerName = res.data.fullname;
+    this.state.listOwner.map((owner) => {
+      if (ownerId === owner.id) {
+        ownerName = owner.fullname;
+      }
     });
-    console.log(ownerName);
+    return ownerName;
   };
+
+  // onGetOwnerName = (ownerId) => {
+  //   let ownerName = "";
+  //   callApi(`owners/${ownerId}`, "GET", null).then((res) => {
+  //     ownerName = res.data.fullname;
+  //   });
+  //   console.log(ownerName);
+  // };
 
   // async onGetBikeInformation(bikeId) {
   //   // let bikeName = "";
@@ -80,7 +90,7 @@ class Booking extends Component {
       return (
         <tr key={index}>
           <td>{this.onGetCustomerName(row.customerId)}</td>
-          <td>Owner Name</td>
+          <td>{this.onGetOwnerName(row.ownerId)}</td>
           <td>Bike</td>
           <td>{this.formatDate(row.dayRent)}</td>
           <td>{this.formatDate(row.dayReturnActual)}</td>

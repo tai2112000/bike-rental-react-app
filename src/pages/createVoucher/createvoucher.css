@@ -1,0 +1,29 @@
+.form {
+    font-size    : 16px;
+    padding      : 30px;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    height       : auto;
+    font-size    : 15px;
+    padding      : 10px;
+    margin-bottom: 10px;
+
+
+}
+
+.input {
+    height          : 15px;
+    width           : max-content;
+    background-color: var(--main-bg);
+    box-shadow      : var(--box-shadow);
+    border-radius   : var(--border-radius);
+}
+
+.btnSub {
+
+    background-color: gray;
+    box-shadow      : var(--box-shadow);
+    border-radius   : var(--border-radius);
+}
