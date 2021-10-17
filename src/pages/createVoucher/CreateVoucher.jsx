@@ -7,7 +7,6 @@ class CreateVoucher extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: "",
       txtVoucherName: "",
       txtDescription: "",
       txtDiscountPercent: "",
@@ -15,7 +14,6 @@ class CreateVoucher extends Component {
       txtRemain: "",
       dateStart: "",
       dateEnd: "",
-      campaignId: "",
 
       listCampaign: [],
       selectedCampaign: {
@@ -54,6 +52,7 @@ class CreateVoucher extends Component {
   onSave = (e) => {
     e.preventDefault();
     console.log(this.state);
+    console.log(this.state.selectedCampaign.value);
     const {
       txtVoucherName,
       txtDescription,
@@ -62,7 +61,7 @@ class CreateVoucher extends Component {
       txtRemain,
       dateStart,
       dateEnd,
-      
+      selectedCampaign
 
     } = this.state;
 
@@ -74,6 +73,7 @@ class CreateVoucher extends Component {
       startingDate: dateStart,
       expiredDate: dateEnd,
       voucherItemsRemain: txtRemain,
+      campaignId: selectedCampaign.value
     }).then((res) => {
       console.log(res);
     });
