@@ -1,0 +1,78 @@
+.form {
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 10px;
+}
+
+.form-group {
+  padding: 40px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.form-group-area {
+  padding: 40px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+.Input {
+  position: relative;
+  height: 50px;
+  width: 100%;
+  background-color: var(--main-bg);
+  display: flex;
+  align-items: center;
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.Input > input {
+  height: 50px;
+  width: 100%;
+  padding: 10px 60px 10px 20px;
+  font-size: 1rem;
+  border-radius: var(--border-radius);
+  color: var(--txt-color);
+  background-color: var(--main-bg);
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+}
+.buttonSave {
+  margin-left: 20px;
+  margin-right: 50px;
+  position: relative;
+  height: 50px;
+  width: 150px;
+  text-align: center;
+  background-color: var(--main-bg);
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+}
+.buttonSave:hover {
+  background-color: blue;
+}
+.saveSuccess {
+  margin-left: 20px;
+  position: relative;
+  height: 50px;
+  width: 300px;
+  text-align: center;
+  background-color: green;
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

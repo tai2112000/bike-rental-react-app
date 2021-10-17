@@ -6,3 +6,19 @@
 .onClick {
   cursor: pointer;
 }
+.btnView {
+  position: relative;
+  text-align: center;
+  width: 50px;
+  height: 30px;
+  background-color: white;
+  color: red;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+}
+.btnView:hover {
+  background-color: rgb(20, 224, 54);
+}

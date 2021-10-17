@@ -3,6 +3,7 @@ import callApi from "../../utils/apiCaller";
 import Select from "react-select";
 import callApi_V2 from "../../utils/apiCallerV2";
 import styles from "./Campaign.css";
+import { Link } from "react-router-dom";
 class Campaign extends Component {
   constructor(props) {
     super(props);
@@ -43,7 +44,6 @@ class Campaign extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log(this.state.selectedArea);
     if (this.state.selectedArea.value != null) {
       callApi_V2(
         `campaigns/areaId/${this.state.selectedArea.value}`,
@@ -85,7 +85,7 @@ class Campaign extends Component {
       });
     }
   }
-  formatDate = (date, format = "mm/dd/yy") => {
+  formatDate = (date, format = "dd/mm/yy") => {
     let d = new Date(date);
     const map = {
       mm: d.getMonth() + 1,
@@ -93,7 +93,7 @@ class Campaign extends Component {
       yy: d.getFullYear().toString().slice(-2),
       yyyy: d.getFullYear(),
     };
-    return format.replace(/mm|dd|yy/gi, (matched) => map[matched]);
+    return format.replace(/dd|mm|yy/gi, (matched) => map[matched]);
   };
 
   ongetAreaName(areaId) {
@@ -130,7 +130,7 @@ class Campaign extends Component {
       label: item.name,
       value: item.id,
     }));
-    console.log("asasa:" + this.state.showNext);
+    // console.log("asasa:" + options.label);
     return (
       <div>
         <h2 className='page-header'>Campaigns</h2>
@@ -155,18 +155,26 @@ class Campaign extends Component {
                     <thead>
                       <td>Description</td>
                       <td>Area</td>
-                      <td>Expired Date</td>
                       <td>Starting Date</td>
-                      <td>Status</td>
+                      <td>Expired Date</td>
+                      {/* <td>Status</td> */}
+                      <td>Event</td>
                     </thead>
                     <tbody>
                       {listCampaign.map((item) => (
                         <tr key={item.id}>
                           <td>{item.description}</td>
                           <td>{this.ongetAreaName(item.areaId)}</td>
-                          <td>{this.formatDate(item.expiredDate)}</td>
                           <td>{this.formatDate(item.startingDate)}</td>
-                          <td>Status</td>
+                          <td>{this.formatDate(item.expiredDate)}</td>
+                          <td>
+                            <Link
+                              to={`campaignDetail/${item.id}/edit`}
+                              className='btnView'
+                            >
+                              View
+                            </Link>
+                          </td>
                         </tr>
                       ))}
                     </tbody>

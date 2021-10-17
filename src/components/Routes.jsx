@@ -11,6 +11,7 @@ import Login from "./login/Login";
 import Campaign from "../pages/campaign/Campaign";
 import Vouchers from "../pages/voucher/Vouchers";
 import CreateVoucher from "../pages/createVoucher/CreateVoucher";
+import CampaignDetail from "../pages/campaignDetail/campaignDetail";
 const Routes = () => {
   return (
     <Switch>
@@ -23,6 +24,10 @@ const Routes = () => {
       <Route path='/campaigns' component={Campaign} />
       <Route path='/vouchers' component={Vouchers} />
       <Route path='/createVoucher' component={CreateVoucher} />
+      <Route
+        path='/campaignDetail/:id/edit'
+        component={({ match }) => <CampaignDetail match={match} />}
+      />
     </Switch>
   );
 };

@@ -10,3 +10,13 @@ export default function callApi(endpoint, method = "GET", body) {
     console.log(err);
   });
 }
+
+// export default function putAPT(endpoint, method = "PUT", body) {
+//   return axios({
+//     method: method,
+//     url: `${Config.API_URL}/${endpoint}`,
+//     data: body,
+//   }).catch((err) => {
+//     console.log(err);
+//   });
+// }
