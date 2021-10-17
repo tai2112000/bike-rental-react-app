@@ -189,11 +189,11 @@ class campaignDetail extends Component {
               />
             </div>
           </div>
-          <div className='buttonContainer' onClick={this.onSave}>
+          <div className='buttonContainer'>
             <div></div>
             <div className='buttonSave'>
               {" "}
-              <div>Save</div>
+              <div onClick={this.onSave}>Save</div>
             </div>
           </div>
         </form>
