@@ -118,7 +118,7 @@ class CreateVoucher extends Component {
             <label>Voucher Name: </label>
             <br />
             <input
-              className="col-6"
+              className="input col-6"
               type="text"
               value={txtVoucherName}
               name="txtVoucherName"
@@ -128,8 +128,8 @@ class CreateVoucher extends Component {
           <div className="form-group">
             <label>Description: </label>
             <br />
-            <input
-              className="col-6"
+            <textarea
+              className="textarea col-6"
               type="text"
               value={txtDescription}
               name="txtDescription"
@@ -140,7 +140,7 @@ class CreateVoucher extends Component {
             <label>Discount Percent: </label>
             <br />
             <input
-              className="col-2"
+              className="input col-2"
               type="text"
               value={txtDiscountPercent}
               name="txtDiscountPercent"
@@ -151,7 +151,7 @@ class CreateVoucher extends Component {
             <label>Max Amount: </label>
             <br />
             <input
-              className="col-2"
+              className="input col-2"
               type="text"
               value={txtMaxAmount}
               name="txtMaxAmount"
@@ -159,10 +159,10 @@ class CreateVoucher extends Component {
             />
           </div>
           <div className="form-group">
-            <label>Remain: </label>
+            <label>Quantity: </label>
             <br />
             <input
-              className="col-2"
+              className="input col-2"
               type="text"
               value={txtRemain}
               name="txtRemain"
@@ -173,7 +173,7 @@ class CreateVoucher extends Component {
             <label>Starting Date: </label>
             <br />
             <input
-              className="col-2"
+              className="input col-2"
               type="date"
               value={dateStart}
               name="dateStart"
@@ -184,7 +184,7 @@ class CreateVoucher extends Component {
             <label>End Date: </label>
             <br />
             <input
-              className="col-2"
+              className="input col-2"
               type="date"
               value={dateEnd}
               name="dateEnd"

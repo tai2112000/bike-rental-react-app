@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import "./sidebar.css";
 
-import logo from "../../assets/images/logo.png";
+import logo from "../../assets/images/logo1.png";
 
 import sidebar_items from "../../assets/JsonData/sidebar_routes.json";
 
@@ -28,7 +28,7 @@ const Sidebar = (props) => {
 
   return (
     <div className='sidebar'>
-      <div className='sidebar__logo'>Bike Rental Admin</div>
+      <div className='sidebar__logo'><img src={logo}/></div>
       {sidebar_items.map((item, index) => (
         <Link to={item.route} key={index}>
           <SidebarItem
