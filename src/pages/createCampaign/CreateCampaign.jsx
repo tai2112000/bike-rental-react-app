@@ -1,22 +1,19 @@
 import React, { Component } from "react";
-import "./createvoucher.css";
+import "./createcampaign.css";
 import callApi from "../../utils/apiCaller";
 import Select from "react-select";
+import { Link } from "react-router-dom";
 
-class CreateVoucher extends Component {
+class CreateCampaign extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      txtVoucherName: "",
       txtDescription: "",
-      txtDiscountPercent: "",
-      txtMaxAmount: "",
-      txtRemain: "",
       dateStart: "",
       dateEnd: "",
 
-      listCampaign: [],
-      selectedCampaign: {
+      listArea: [],
+      selectedArea: {
         label: null,
         value: null,
       },
@@ -24,20 +21,11 @@ class CreateVoucher extends Component {
     };
   }
 
-  componentDidMount() {
-    callApi("campaigns?page=1", "GET", null).then((res) => {
-      // res = null => not display btn next
-      if (res === null || res.data.data.length > 8) {
-        this.setState({
-          showNext: false,
-          listCampaign: res.data.data,
-        });
-      } else {
-        this.setState({
-          listCampaign: res.data.data,
-          showNext: true,
-        });
-      }
+ componentDidMount() {
+    callApi("areas", "GET", null).then((res) => {
+      this.setState({
+        listArea: res.data,
+      });
     });
   }
 
@@ -52,27 +40,21 @@ class CreateVoucher extends Component {
 
   onSave = (e) => {
     e.preventDefault();
-      const {
-      txtVoucherName,
+    console.log(this.state);
+    console.log(this.state.selectedArea.value);
+    const {
       txtDescription,
-      txtDiscountPercent,
-      txtMaxAmount,
-      txtRemain,
+      selectedArea,
       dateStart,
       dateEnd,
-      selectedCampaign
 
     } = this.state;
 
-    callApi("vouchers", "POST", {
-      name: txtVoucherName,
+    callApi("campaigns", "POST", {
       description: txtDescription,
-      discountPercent: txtDiscountPercent,
-      discountAmount: txtMaxAmount,
+      areaId: selectedArea.value,
       startingDate: dateStart,
-      expiredDate: dateEnd,
-      voucherItemsRemain: txtRemain,
-      campaignId: selectedCampaign.value
+      expiredDate: dateEnd
     }).then((res) => {
       this.setState({
         isShowSuccessful: 1,
@@ -86,49 +68,35 @@ class CreateVoucher extends Component {
 
   render() {
     const {
-      txtVoucherName,
       txtDescription,
-      txtDiscountPercent,
-      txtMaxAmount,
-      txtRemain,
       dateStart,
       dateEnd,
-      listCampaign,
+      listArea,
       isShowSuccessful
     } = this.state;
 
-    const options = listCampaign.map((item) => ({
-      label: item.description,
+    const options = listArea.map((item) => ({
+      label: item.name,
       value: item.id,
     }));
 
     return (
       <div>
-        <h2 className="page-header">Create Voucher</h2> 
+        <h2 className="page-header">Create Campaign</h2>
+        
         <form onSubmit={this.onSave}>
           <div className="selectfiled">
-            <label>Campaign: </label>
+            <label>Area: </label>
             <br />
             <Select
               className="col-6"
               onChange={(value) =>
                 this.setState({
-                    selectedCampaign: value,
+                    selectedArea: value,
                 })
               }
             
               options={options}
-            />
-          </div>
-          <div>
-            <label>Voucher Name: </label>
-            <br />
-            <input
-              className="input col-6"
-              type="text"
-              value={txtVoucherName}
-              name="txtVoucherName"
-              onChange={this.onChange}
             />
           </div>
           <div>
@@ -139,39 +107,6 @@ class CreateVoucher extends Component {
               type="text"
               value={txtDescription}
               name="txtDescription"
-              onChange={this.onChange}
-            />
-          </div>
-          <div>
-            <label>Discount Percent: </label>
-            <br />
-            <input
-              className="input col-2"
-              type="text"
-              value={txtDiscountPercent}
-              name="txtDiscountPercent"
-              onChange={this.onChange}
-            />
-          </div>
-          <div>
-            <label>Max Amount: </label>
-            <br />
-            <input
-              className="input col-2"
-              type="text"
-              value={txtMaxAmount}
-              name="txtMaxAmount"
-              onChange={this.onChange}
-            />
-          </div>
-          <div>
-            <label>Quantity: </label>
-            <br />
-            <input
-              className="input col-2"
-              type="text"
-              value={txtRemain}
-              name="txtRemain"
               onChange={this.onChange}
             />
           </div>
@@ -198,6 +133,7 @@ class CreateVoucher extends Component {
             />
           </div>
           <button className="btn-create" type="submit">
+            {/* <Link to="/campaigns">Create</Link> */}
             Create
           </button>
         </form>
@@ -211,4 +147,4 @@ class CreateVoucher extends Component {
   }
 }
 
-export default CreateVoucher;
+export default CreateCampaign;

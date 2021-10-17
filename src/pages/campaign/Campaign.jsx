@@ -134,6 +134,9 @@ class Campaign extends Component {
     return (
       <div>
         <h2 className='page-header'>Campaigns</h2>
+        <Link to="/createCampaign">
+          <button className="btn-create">Create Campaign</button>
+        </Link>
         <div className='row'>
           <h3 className='col-2'>Select Area</h3>
           <Select

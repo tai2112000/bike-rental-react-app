@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import callApi from "../utils/apiCaller";
+import { Link } from "react-router-dom";
 
 const customerTableHead = [
   //   "",
@@ -47,6 +48,9 @@ class Areas extends Component {
     return (
       <div>
         <h2 className='page-header'>Areas</h2>
+        <Link to="/createArea">
+          <button className="btn-create">Create Area</button>
+        </Link>
         <div className='row'>
           <div className='col-12'>
             <div className='card'>

@@ -24,7 +24,7 @@ return(
     <form>
         <div className="form-inner">
             <h2>Login Page</h2>
-            <div className="form-group">
+            <div >
                 <input 
                     id="username"
                     type="text" 
