@@ -56,10 +56,6 @@ class CreateCampaign extends Component {
       if (res) {
         history.goBack();
       }
-      // this.timer = setTimeout(() => {
-      //   if (this.state.isShowSuccessful === 1)
-      //     this.setState({ isShowSuccessful: -1 });
-      // }, 3 * 1000); // 3s
     });
   };
 

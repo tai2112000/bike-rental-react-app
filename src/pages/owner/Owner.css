@@ -1,0 +1,58 @@
+.btnView {
+  position: relative;
+  text-align: center;
+  width: 85px;
+  height: 30px;
+  background-color: rgb(98, 162, 236);
+  color: red;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+}
+.btnView:hover {
+  background-color: rgb(20, 224, 54);
+}
+.containerBtn {
+  display: flex;
+}
+
+.btnDelete {
+  position: relative;
+  text-align: center;
+  width: 50px;
+  height: 30px;
+  background-color: red;
+  color: white;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 10px;
+}
+.btnDelete:hover {
+  background-color: rgb(20, 224, 54);
+}
+
+.btnActive {
+  position: relative;
+  text-align: center;
+  width: 50px;
+  height: 30px;
+  background-color: rgb(20, 224, 54);
+  color: red;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 10px;
+}
+.btnDelete:hover {
+  background-color: red;
+  color: black;
+}

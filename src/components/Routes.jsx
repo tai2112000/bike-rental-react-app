@@ -14,7 +14,7 @@ import CreateVoucher from "../pages/createVoucher/CreateVoucher";
 import CampaignDetail from "../pages/campaignDetail/campaignDetail";
 import CreateCampaign from "../pages/createCampaign/CreateCampaign";
 import CreateArea from "../pages/arena/CreateArea";
-
+import BikeOfOwner from "../pages/bikeOfOwner/BikeOfOwner";
 const Routes = () => {
   return (
     <Switch>
@@ -26,10 +26,17 @@ const Routes = () => {
       <Route path='/owners' component={Owner} />
       <Route path='/campaigns' component={Campaign} />
       <Route path='/vouchers' component={Vouchers} />
-      <Route path='/createVoucher' component={CreateVoucher} />
       <Route
-        path='/campaignDetail/:id/edit'
+        path='/createVoucher/:id'
+        component={({ match }) => <CreateVoucher match={match} />}
+      />
+      <Route
+        path='/campaignDetail/:id'
         component={({ match }) => <CampaignDetail match={match} />}
+      />
+      <Route
+        path='/bikeOfOwner/:id'
+        component={({ match }) => <BikeOfOwner match={match} />}
       />
       <Route
         path='/createCampaign'

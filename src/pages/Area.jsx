@@ -2,28 +2,6 @@ import React, { Component } from "react";
 import callApi from "../utils/apiCaller";
 import { Link } from "react-router-dom";
 
-const customerTableHead = [
-  //   "",
-  //   "name",
-  //   "email",
-  //   "phone",
-  //   "total orders",
-  //   "total spend",
-  //   "location",
-
-  "Postal Code",
-  "Area name",
-];
-
-const renderHead = (item, index) => <th key={index}>{item}</th>;
-
-const renderBody = (item, index) => (
-  <tr key={index}>
-    <td>{item.postalCode}</td>
-    <td>{item.name}</td>
-  </tr>
-);
-
 class Areas extends Component {
   constructor(props) {
     super(props);
@@ -48,8 +26,8 @@ class Areas extends Component {
     return (
       <div>
         <h2 className='page-header'>Areas</h2>
-        <Link to="/createArea">
-          <button className="btn-create">Create Area</button>
+        <Link to='/createArea'>
+          <button className='btn-create'>Create Area</button>
         </Link>
         <div className='row'>
           <div className='col-12'>

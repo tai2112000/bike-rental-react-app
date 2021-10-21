@@ -62,6 +62,9 @@
 .buttonSave:hover {
   background-color: blue;
 }
+.SaveContainer {
+  display: flex;
+}
 .saveSuccess {
   margin-left: 20px;
   position: relative;
@@ -76,4 +79,49 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+.btn-create {
+  height: 30px;
+  width: 120px;
+  cursor: pointer;
+  border: 5px;
+  outline: 0;
+  color: var(--txt-white);
+  background-color: var(--main-color);
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
+  margin-bottom: 20px;
+}
+.btn-disable {
+  height: 30px;
+  width: 120px;
+  cursor: pointer;
+  border: 5px;
+  outline: 0;
+  color: var(--txt-white);
+  background-color: rgb(98, 101, 98);
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
+  margin-bottom: 20px;
+}
+.containerBtn {
+  display: flex;
+}
+.btnDelete {
+  position: relative;
+  text-align: center;
+  width: 50px;
+  height: 30px;
+  background-color: red;
+  color: white;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 10px;
+}
+.btnDelete:hover {
+  background-color: rgb(20, 224, 54);
 }

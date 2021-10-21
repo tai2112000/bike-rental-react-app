@@ -15,6 +15,9 @@ class CreateVoucher extends Component {
       dateStart: "",
       dateEnd: "",
 
+      campaignId: "",
+      campaignDescription: "",
+
       listCampaign: [],
       selectedCampaign: {
         label: null,
@@ -39,6 +42,19 @@ class CreateVoucher extends Component {
         });
       }
     });
+    var { match } = this.props;
+    if (match) {
+      var campaignId = match.params.id;
+      this.setState({
+        campaignId: campaignId,
+      });
+    }
+    callApi(`campaigns/${campaignId}`, "GET", null).then((res) => {
+      var data = res.data;
+      this.setState({
+        campaignDescription: data.description,
+      });
+    });
   }
 
   onChange = (e) => {
@@ -52,7 +68,7 @@ class CreateVoucher extends Component {
 
   onSave = (e) => {
     e.preventDefault();
-      const {
+    const {
       txtVoucherName,
       txtDescription,
       txtDiscountPercent,
@@ -60,20 +76,25 @@ class CreateVoucher extends Component {
       txtRemain,
       dateStart,
       dateEnd,
-      selectedCampaign
-
+      campaignId,
     } = this.state;
 
-    callApi("vouchers", "POST", {
-      name: txtVoucherName,
-      description: txtDescription,
-      discountPercent: txtDiscountPercent,
-      discountAmount: txtMaxAmount,
-      startingDate: dateStart,
-      expiredDate: dateEnd,
-      voucherItemsRemain: txtRemain,
-      campaignId: selectedCampaign.value
-    }).then((res) => {
+    callApi(
+      "vouchers",
+      "POST",
+      {
+        name: txtVoucherName,
+        description: txtDescription,
+        discountPercent: txtDiscountPercent,
+        discountAmount: txtMaxAmount,
+        startingDate: dateStart,
+        expiredDate: dateEnd,
+        voucherItemsRemain: txtRemain,
+        campaignId: campaignId,
+      },
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJjODdiYjYzLTFlNDktNDZjNC1hNTBiLWMxNjE5Yjk4NDY0NCIsInJvbGUiOiIyIiwiZXhwIjoxNjM0ODMwODQ5fQ.XRaVeCRJGkySGJOi9naQq4o0KdBLmAP-ImYyTD39x2Y"
+    ).then((res) => {
+      console.log(res);
       this.setState({
         isShowSuccessful: 1,
       });
@@ -93,41 +114,26 @@ class CreateVoucher extends Component {
       txtRemain,
       dateStart,
       dateEnd,
-      listCampaign,
-      isShowSuccessful
+      isShowSuccessful,
+      campaignDescription,
     } = this.state;
-
-    const options = listCampaign.map((item) => ({
-      label: item.description,
-      value: item.id,
-    }));
 
     return (
       <div>
-        <h2 className="page-header">Create Voucher</h2> 
+        <h2 className='page-header'>Create Voucher</h2>
         <form onSubmit={this.onSave}>
-          <div className="selectfiled">
-            <label>Campaign: </label>
-            <br />
-            <Select
-              className="col-6"
-              onChange={(value) =>
-                this.setState({
-                    selectedCampaign: value,
-                })
-              }
-            
-              options={options}
-            />
+          <div className='selectfiled'>
+            <label>For Campaign: </label>
+            <label>{campaignDescription}</label>
           </div>
           <div>
             <label>Voucher Name: </label>
             <br />
             <input
-              className="input col-6"
-              type="text"
+              className='input col-6'
+              type='text'
               value={txtVoucherName}
-              name="txtVoucherName"
+              name='txtVoucherName'
               onChange={this.onChange}
             />
           </div>
@@ -135,10 +141,10 @@ class CreateVoucher extends Component {
             <label>Description: </label>
             <br />
             <textarea
-              className="textarea col-6"
-              type="text"
+              className='textarea col-6'
+              type='text'
               value={txtDescription}
-              name="txtDescription"
+              name='txtDescription'
               onChange={this.onChange}
             />
           </div>
@@ -146,10 +152,10 @@ class CreateVoucher extends Component {
             <label>Discount Percent: </label>
             <br />
             <input
-              className="input col-2"
-              type="text"
+              className='input col-2'
+              type='text'
               value={txtDiscountPercent}
-              name="txtDiscountPercent"
+              name='txtDiscountPercent'
               onChange={this.onChange}
             />
           </div>
@@ -157,10 +163,10 @@ class CreateVoucher extends Component {
             <label>Max Amount: </label>
             <br />
             <input
-              className="input col-2"
-              type="text"
+              className='input col-2'
+              type='text'
               value={txtMaxAmount}
-              name="txtMaxAmount"
+              name='txtMaxAmount'
               onChange={this.onChange}
             />
           </div>
@@ -168,10 +174,10 @@ class CreateVoucher extends Component {
             <label>Quantity: </label>
             <br />
             <input
-              className="input col-2"
-              type="text"
+              className='input col-2'
+              type='text'
               value={txtRemain}
-              name="txtRemain"
+              name='txtRemain'
               onChange={this.onChange}
             />
           </div>
@@ -179,10 +185,10 @@ class CreateVoucher extends Component {
             <label>Starting Date: </label>
             <br />
             <input
-              className="input col-2"
-              type="date"
+              className='input col-2'
+              type='date'
               value={dateStart}
-              name="dateStart"
+              name='dateStart'
               onChange={this.onChange}
             />
           </div>
@@ -190,14 +196,14 @@ class CreateVoucher extends Component {
             <label>End Date: </label>
             <br />
             <input
-              className="input col-2"
-              type="date"
+              className='input col-2'
+              type='date'
               value={dateEnd}
-              name="dateEnd"
+              name='dateEnd'
               onChange={this.onChange}
             />
           </div>
-          <button className="btn-create" type="submit">
+          <button className='btn-create' type='submit'>
             Create
           </button>
         </form>

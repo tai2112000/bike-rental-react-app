@@ -198,7 +198,7 @@ class Campaign extends Component {
                           </td>
                           <td className='containerBtn'>
                             <Link
-                              to={`campaignDetail/${item.id}/edit`}
+                              to={`campaignDetail/${item.id}`}
                               className='btnView'
                             >
                               View

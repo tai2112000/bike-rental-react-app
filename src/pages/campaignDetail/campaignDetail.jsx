@@ -3,6 +3,7 @@ import callApi_V2 from "../../utils/apiCallerV2";
 import callApi from "../../utils/apiCaller.js";
 import styles from "./campaignDetail.css";
 import Select from "react-select";
+import { Link } from "react-router-dom";
 class campaignDetail extends Component {
   constructor(props) {
     super(props);
@@ -20,6 +21,8 @@ class campaignDetail extends Component {
         value: null,
       },
       isShowSuccessful: 0,
+      isDisableEdit: true,
+      isDisableCreateVoucher: false,
     };
   }
 
@@ -48,12 +51,19 @@ class campaignDetail extends Component {
           expiredDate: data.expiredDate,
           startingDate: data.startingDate,
         });
+        if (data.status === 1) {
+          this.setState({
+            isDisableCreateVoucher: true,
+          });
+        }
       });
     }
   }
+
   componentWillUnmount() {
     if (this.timer) clearTimeout(this.timer);
   }
+
   ongetAreaName(areaId) {
     let areaName = "";
     this.state.areaOptions.map((area) => {
@@ -74,6 +84,7 @@ class campaignDetail extends Component {
     };
     return format.replace(/yyyy|mm|dd/gi, (matched) => map[matched]);
   };
+
   formatDate = (date, format = "yyyy-mm-dd") => {
     let d = new Date(date);
     const map = {
@@ -93,6 +104,24 @@ class campaignDetail extends Component {
       [name]: value,
     });
   };
+
+  async onDelete(id) {
+    // POST request using fetch with async/await
+    const requestOptions = {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(id),
+    };
+    const response = await fetch(
+      "http://52.74.12.123/api/v2/vouchers",
+      requestOptions
+    );
+    const res = await response.json();
+
+    if (res === true) {
+      window.location.reload();
+    }
+  }
 
   onSave = (e) => {
     var { id, description, areaId, expiredDate, startingDate } = this.state;
@@ -120,13 +149,10 @@ class campaignDetail extends Component {
       expiredDate,
       startingDate,
       areaOptions,
-      selectedArea,
       isShowSuccessful,
+      isDisableEdit,
+      isDisableCreateVoucher,
     } = this.state;
-    const options = areaOptions.map((item) => ({
-      label: item.name,
-      value: item.id,
-    }));
     return (
       <div>
         <h2 className='page-header'>Campaign Detail</h2>
@@ -149,11 +175,12 @@ class campaignDetail extends Component {
                 type='text'
                 value={description}
                 onChange={this.onChange}
+                disabled={isDisableEdit}
               />
             </div>
           </div>
           <div className='form-group'>
-            <label style={{ width: `150px` }}>area</label>
+            <label style={{ width: `150px` }}>Area</label>
             <div className='Input'>
               <input
                 placeholder='Area'
@@ -174,6 +201,7 @@ class campaignDetail extends Component {
                 type='date'
                 value={this.formatChangeDate(startingDate)}
                 onChange={this.onChange}
+                disabled={isDisableEdit}
               />
             </div>
           </div>
@@ -186,18 +214,47 @@ class campaignDetail extends Component {
                 name='expiredDate'
                 value={this.formatChangeDate(expiredDate)}
                 onChange={this.onChange}
+                disabled={isDisableEdit}
               />
             </div>
           </div>
           <div className='buttonContainer'>
             <div></div>
-            <div className='buttonSave'>
-              {" "}
-              <div onClick={this.onSave}>Save</div>
-            </div>
+            {!isDisableEdit ? (
+              <div className='SaveContainer'>
+                <div className='buttonSave'>
+                  <div onClick={() => this.setState({ isDisableEdit: true })}>
+                    Cancel
+                  </div>
+                </div>
+                <div className='buttonSave'>
+                  <div onClick={this.onSave}>Save</div>
+                </div>
+              </div>
+            ) : (
+              <div className='buttonSave'>
+                <div
+                  onClick={() =>
+                    this.setState({
+                      isDisableEdit: false,
+                    })
+                  }
+                >
+                  Edit
+                </div>
+              </div>
+            )}
           </div>
         </form>
         <h2 className='page-header'>Voucher Exits</h2>
+        <Link to={`/createVoucher/${id}`}>
+          <button
+            className={isDisableCreateVoucher ? "btn-disable" : "btn-create"}
+            disabled={isDisableCreateVoucher}
+          >
+            Create Voucher
+          </button>
+        </Link>
         <div className='row'>
           <div className='col-12'>
             <div className='card'>
@@ -212,7 +269,8 @@ class campaignDetail extends Component {
                       <td>StartingDate</td>
                       <td>ExpiredDate</td>
                       <td>Items Remain</td>
-                      {/* <td>Status</td> */}
+                      <td>Status</td>
+                      <td>Event</td>
                     </thead>
                     <tbody>
                       {listVoucher.map((item) => (
@@ -224,6 +282,22 @@ class campaignDetail extends Component {
                           <td>{this.formatDate(item.startingDate)}</td>
                           <td>{this.formatDate(item.expiredDate)}</td>
                           <td>{item.voucherItemsRemain}</td>
+                          <td>
+                            {item.status === 1 ? "Unavailable" : "Available"}
+                          </td>
+                          <td className='containerBtn'>
+                            {item.status !== 1 ? (
+                              <button
+                                type='submit'
+                                className='btnDelete'
+                                onClick={() => this.onDelete(item.id)}
+                              >
+                                Delete
+                              </button>
+                            ) : (
+                              <></>
+                            )}
+                          </td>
                         </tr>
                       ))}
                     </tbody>

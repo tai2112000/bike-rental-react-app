@@ -25,11 +25,6 @@
     "icon": "bx bx-user-pin"
   },
   {
-    "display_name": "Vouchers",
-    "route": "/vouchers",
-    "icon": "bx bx-user-pin"
-  },
-  {
     "display_name": "Areas",
     "route": "/areas",
     "icon": "bx bx-user-pin"

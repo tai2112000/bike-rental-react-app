@@ -85,16 +85,16 @@ class Vouchers extends Component {
     console.log(listVoucher);
     return (
       <div>
-        <h2 className="page-header">Vouchers</h2>
-        <Link to="/createVoucher">
-          <button className="btn-create">Create Voucher</button>
+        <h2 className='page-header'>Vouchers</h2>
+        <Link to='/createVoucher'>
+          <button className='btn-create'>Create Voucher</button>
         </Link>
         <br />
-        <div className="row">
-          <div className="col-12">
-            <div className="card">
-              <div className="card__body">
-                <div className="table-wrapper">
+        <div className='row'>
+          <div className='col-12'>
+            <div className='card'>
+              <div className='card__body'>
+                <div className='table-wrapper'>
                   <table>
                     <thead>
                       <td>Campaign</td>
