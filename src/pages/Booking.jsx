@@ -8,8 +8,9 @@ class Booking extends Component {
       listBooking: [],
       listCustomer: [],
       listOwner: [],
-      listBikeId: [],
       bikeInfo: "",
+      listArea: [],
+      listBike: [],
     };
   }
 
@@ -17,7 +18,6 @@ class Booking extends Component {
     callApi("bookings", "GET", null).then((res) => {
       this.setState({
         listBooking: res.data,
-        listBikeId: res.data.bikeId,
       });
     });
     callApi_V2("admins/customers", "GET", null).then((res) => {
@@ -28,6 +28,21 @@ class Booking extends Component {
     callApi(`owners?size=23`, "GET", null).then((res) => {
       this.setState({
         listOwner: res.data.data,
+      });
+    });
+    callApi("areas", "GET", null).then((res) => {
+      this.setState({
+        listArea: res.data,
+      });
+    });
+    callApi(
+      "bikes?page=1",
+      "GET",
+      null,
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJjODdiYjYzLTFlNDktNDZjNC1hNTBiLWMxNjE5Yjk4NDY0NCIsInJvbGUiOiIyIiwiZXhwIjoxNjM0ODM0OTQyfQ.SgVOAn5hEgiChUoRUBa_Ge9tcyFoiqsgfxO2Qowt314"
+    ).then((res) => {
+      this.setState({
+        listBike: res.data.data,
       });
     });
   }
@@ -52,22 +67,45 @@ class Booking extends Component {
     return ownerName;
   };
 
-  // onGetOwnerName = (ownerId) => {
-  //   let ownerName = "";
-  //   callApi(`owners/${ownerId}`, "GET", null).then((res) => {
-  //     ownerName = res.data.fullname;
-  //   });
-  //   console.log(ownerName);
-  // };
+  onGetAreaId = (ownerId) => {
+    let areaId = "";
+    this.state.listOwner.map((owner) => {
+      if (ownerId === owner.id) {
+        areaId = owner.areaId;
+      }
+    });
+    return areaId;
+  };
 
-  // async onGetBikeInformation(bikeId) {
-  //   // let bikeName = "";
-  //   // callApi(`bikes/${bikeId}`, "Get", null).then((res) => {
-  //   //   console.log("BIke Name" + res.bikeName);
-  //   // });
-  //   const name = await callApi(`bikes/${bikeId}`, "Get", null);
-  //   console.log(name.data.categoryName);
-  // }
+  onGetAreaName = (areaId) => {
+    let areaName = "";
+    this.state.listArea.map((area) => {
+      if (areaId === area.id) {
+        areaName = area.name;
+      }
+    });
+    return areaName;
+  };
+
+  onGetBikeName = (bikeId) => {
+    let bikeName = "";
+    this.state.listBike.map((bike) => {
+      if (bikeId === bike.id) {
+        bikeName = bike.categoryName;
+      }
+    });
+    return bikeName;
+  };
+
+  onGetBikeLicensePlate = (bikeId) => {
+    let bikeLicensePlate = "";
+    this.state.listBike.map((bike) => {
+      if (bikeId === bike.id) {
+        bikeLicensePlate = bike.licensePlate;
+      }
+    });
+    return bikeLicensePlate;
+  };
 
   formatDate = (date, format = "mm/dd/yy") => {
     let d = new Date(date);
@@ -91,12 +129,12 @@ class Booking extends Component {
         <tr key={index}>
           <td>{this.onGetCustomerName(row.customerId)}</td>
           <td>{this.onGetOwnerName(row.ownerId)}</td>
-          <td>Bike</td>
+          <td>{this.onGetBikeName(row.bikeId)} - {this.onGetBikeLicensePlate(row.bikeId)}</td>
           <td>{this.formatDate(row.dayRent)}</td>
           <td>{this.formatDate(row.dayReturnActual)}</td>
           <td>{this.formatDate(row.dayReturnExpected)}</td>
           <td>{`${row.price}VND`}</td>
-          {/* <td>Test</td> */}
+          <td>{this.onGetAreaName(this.onGetAreaId(row.ownerId))}</td>
           <td>{row.status}</td>
         </tr>
       );
@@ -105,16 +143,17 @@ class Booking extends Component {
   }
 
   render() {
-    const { listBooking, listOwner, listBikeId } = this.state;
-    console.log(listBikeId);
+    const { listBooking, listOwner, listBike} = this.state;
+    console.log(listBike);
+
     return (
       <div>
-        <h2 className='page-header'>Bookings</h2>
-        <div className='row'>
-          <div className='col-12'>
-            <div className='card'>
-              <div className='card__body'>
-                <div className='table-wrapper'>
+        <h2 className="page-header">Bookings</h2>
+        <div className="row">
+          <div className="col-12">
+            <div className="card">
+              <div className="card__body">
+                <div className="table-wrapper">
                   <table>
                     <tr>
                       <td>Customer name</td>
@@ -124,6 +163,7 @@ class Booking extends Component {
                       <td>Day return Actual</td>
                       <td>Day return Expected</td>
                       <td>Price</td>
+                      <td>Area</td>
                       {/* <td>Payment method</td> */}
                       <td>Status</td>
                     </tr>
