@@ -90,9 +90,8 @@ class Owner extends Component {
                           <td>{item.status === 1 ? "Deactive" : "Active"}</td>
                           <td className='containerBtn'>
                             <Link
-                              // to={`bikeOfOwner/${item.id}`}
-                              to='/'
-                              className='btnView'
+                              to={`bikeOfOwner/${item.id}`}
+                              className='btnViewBike'
                             >
                               View Bike
                             </Link>
