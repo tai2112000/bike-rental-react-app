@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import callApi_V2 from "../../utils/apiCallerV2";
 import styles from "./customer.css";
 class Customers extends Component {
@@ -46,6 +47,24 @@ class Customers extends Component {
       });
     }
   };
+
+  async onDelete(id) {
+    // POST request using fetch with async/await
+    const requestOptions = {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(id),
+    };
+    const response = await fetch(
+      "http://52.74.12.123/api/v1/customers",
+      requestOptions
+    );
+    const res = await response.json();
+    if (res === true) {
+      window.location.reload();
+    }
+  }
+
   render() {
     const { listCustomer, searchInput, searchResult } = this.state;
     // console.log(searchInput);
@@ -78,7 +97,7 @@ class Customers extends Component {
                       <td>Name</td>
                       <td>Phone Number</td>
                       <td>Reward Point</td>
-                      <td>Band account</td>
+                      <td>Status</td>
                     </thead>
                     <tbody>
                       {searchResult ? (
@@ -86,7 +105,9 @@ class Customers extends Component {
                           <td>{searchResult.fullname}</td>
                           <td>{searchResult.phoneNumber}</td>
                           <td>{searchResult.rewardPoints}</td>
-                          <td>{searchResult.isBanned}null</td>
+                          <td>
+                            {searchResult.isBanned === 1 ? "Banned" : "Active"}
+                          </td>
                         </tr>
                       ) : (
                         listCustomer.map((item) => (
@@ -94,7 +115,22 @@ class Customers extends Component {
                             <td>{item.fullname}</td>
                             <td>{item.phoneNumber}</td>
                             <td>{item.rewardPoints}</td>
-                            <td>{item.isBanned}null</td>
+                            <td>
+                            {item.isBanned === 1 ? "Banned" : "Active"}
+                          </td>
+                            <td className='containerBtn'>
+                            {item.isBanned !== 1 ? (
+                              <button
+                                type='submit'
+                                className='btnDelete'
+                                onClick={() => this.onDelete(item.id)}
+                              >
+                                Delete
+                              </button>
+                            ) : (
+                              <></>
+                            )}
+                          </td>
                           </tr>
                         ))
                       )}
