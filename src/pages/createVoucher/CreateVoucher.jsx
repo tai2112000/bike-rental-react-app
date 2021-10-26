@@ -78,30 +78,31 @@ class CreateVoucher extends Component {
       dateEnd,
       campaignId,
     } = this.state;
+    var { history } = this.props;
 
-    callApi(
-      "vouchers",
-      "POST",
-      {
-        name: txtVoucherName,
-        description: txtDescription,
-        discountPercent: txtDiscountPercent,
-        discountAmount: txtMaxAmount,
-        startingDate: dateStart,
-        expiredDate: dateEnd,
-        voucherItemsRemain: txtRemain,
-        campaignId: campaignId,
-      },
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJjODdiYjYzLTFlNDktNDZjNC1hNTBiLWMxNjE5Yjk4NDY0NCIsInJvbGUiOiIyIiwiZXhwIjoxNjM0ODMwODQ5fQ.XRaVeCRJGkySGJOi9naQq4o0KdBLmAP-ImYyTD39x2Y"
-    ).then((res) => {
-      console.log(res);
-      this.setState({
-        isShowSuccessful: 1,
-      });
-      this.timer = setTimeout(() => {
-        if (this.state.isShowSuccessful === 1)
-          this.setState({ isShowSuccessful: -1 });
-      }, 3 * 1000); // 3s
+    callApi("vouchers", "POST", {
+      name: txtVoucherName,
+      description: txtDescription,
+      discountPercent: txtDiscountPercent,
+      discountAmount: txtMaxAmount,
+      startingDate: dateStart,
+      expiredDate: dateEnd,
+      voucherItemsRemain: txtRemain,
+      campaignId: campaignId,
+    }).then((res) => {
+      // if (res) {
+      //   history.goBack();
+      // }
+      if (res) {
+        console.log(res);
+        this.setState({
+          isShowSuccessful: 1,
+        });
+        this.timer = setTimeout(() => {
+          if (this.state.isShowSuccessful === 1)
+            this.setState({ isShowSuccessful: -1 });
+        }, 3 * 1000); // 3s
+      }
     });
   };
 

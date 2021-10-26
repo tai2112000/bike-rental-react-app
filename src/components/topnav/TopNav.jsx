@@ -36,7 +36,16 @@ const renderUserToggle = (user) => (
 );
 
 const renderUserMenu = (item, index) => (
-  <Link to='/' key={index}>
+  <Link
+    to='/'
+    key={index}
+    onClick={() => {
+      {
+        localStorage.clear();
+        window.location.reload();
+      }
+    }}
+  >
     <div className='notification-item'>
       <i className={item.icon}></i>
       <span>{item.content}</span>

@@ -35,12 +35,7 @@ class Booking extends Component {
         listArea: res.data,
       });
     });
-    callApi(
-      "bikes?page=1",
-      "GET",
-      null,
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJjODdiYjYzLTFlNDktNDZjNC1hNTBiLWMxNjE5Yjk4NDY0NCIsInJvbGUiOiIyIiwiZXhwIjoxNjM0ODM0OTQyfQ.SgVOAn5hEgiChUoRUBa_Ge9tcyFoiqsgfxO2Qowt314"
-    ).then((res) => {
+    callApi("bikes?page=1", "GET", null).then((res) => {
       this.setState({
         listBike: res.data.data,
       });
@@ -129,7 +124,10 @@ class Booking extends Component {
         <tr key={index}>
           <td>{this.onGetCustomerName(row.customerId)}</td>
           <td>{this.onGetOwnerName(row.ownerId)}</td>
-          <td>{this.onGetBikeName(row.bikeId)} - {this.onGetBikeLicensePlate(row.bikeId)}</td>
+          <td>
+            {this.onGetBikeName(row.bikeId)} -{" "}
+            {this.onGetBikeLicensePlate(row.bikeId)}
+          </td>
           <td>{this.formatDate(row.dayRent)}</td>
           <td>{this.formatDate(row.dayReturnActual)}</td>
           <td>{this.formatDate(row.dayReturnExpected)}</td>
@@ -143,17 +141,17 @@ class Booking extends Component {
   }
 
   render() {
-    const { listBooking, listOwner, listBike} = this.state;
+    const { listBooking, listOwner, listBike } = this.state;
     console.log(listBike);
 
     return (
       <div>
-        <h2 className="page-header">Bookings</h2>
-        <div className="row">
-          <div className="col-12">
-            <div className="card">
-              <div className="card__body">
-                <div className="table-wrapper">
+        <h2 className='page-header'>Bookings</h2>
+        <div className='row'>
+          <div className='col-12'>
+            <div className='card'>
+              <div className='card__body'>
+                <div className='table-wrapper'>
                   <table>
                     <tr>
                       <td>Customer name</td>

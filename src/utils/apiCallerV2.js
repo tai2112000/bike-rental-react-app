@@ -6,6 +6,9 @@ export default function callApi_V2(endpoint, method = "GET", body) {
     method: method,
     url: `${Config.API_URL_V2}/${endpoint}`,
     data: body,
+    headers: {
+      Authorization: "Bearer " + localStorage.getItem("token"),
+    },
   }).catch((err) => {
     console.log(err);
   });

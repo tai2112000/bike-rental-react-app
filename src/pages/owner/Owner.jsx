@@ -13,6 +13,7 @@ class Owner extends Component {
   }
 
   componentDidMount() {
+    console.log(localStorage.getItem("token"));
     callApi("owners?page=1", "GET", null).then((res) => {
       this.setState({
         listOwner: res.data.data,

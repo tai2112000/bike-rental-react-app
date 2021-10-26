@@ -1,52 +1,129 @@
-import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
-import "./login.css";
-
-function Login() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const history = useHistory();
-  
-  useEffect(() => {
-    if (localStorage.getItem("user-info")) {
-      history.replace("/");
-    }
-  });
-  async function login(e) {
-      e.preventDefault();
-    console.log(username, password);
-    if (username === "admin1" && password === "admin1") {
-      history.replace("/");
-    }
-    
+import React, { Component } from "react";
+import Select from "react-select";
+import { Link } from "react-router-dom";
+import callApi from "../../utils/apiCaller";
+class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: "",
+      password: "",
+      errorMessage: "",
+    };
   }
 
-  return (
-    <form>
-      <div className="form-inner">
-        <h2>Login Page</h2>
-        <div>
-          <input
-            id="username"
-            type="text"
-            placeholder="username"
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <br />
-          <input
-            id="password"
-            type="password"
-            placeholder="password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <br />
-          <button type="submit" onClick={login} className="btn btn-primary">
-            Login
-          </button>
-        </div>
+  componentDidMount() {}
+
+  componentWillUnmount() {}
+
+  onChange = (e) => {
+    var target = e.target;
+    var name = target.name;
+    var value = target.value;
+    this.setState({
+      [name]: value,
+    });
+  };
+
+  onSubmit = async (e) => {
+    const { username, password } = this.state;
+    try {
+      e.preventDefault();
+      callApi("admins", "POST", {
+        username: username,
+        password: password,
+      }).then((res) => {
+        if (res) {
+          localStorage.setItem("token", res.data);
+          console.log(res.data);
+          window.location.reload();
+        } else {
+          this.setState({
+            errorMessage: "Login Error !!!",
+          });
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // async onDelete(e) {
+  //   // POST request using fetch with async/await
+  //   const requestOptions = {
+  //     method: "DELETE",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify(id),
+  //   };
+  //   const response = await fetch(
+  //     "http://52.74.12.123/api/v2/vouchers",
+  //     requestOptions
+  //   );
+  //   const res = await response.json();
+
+  //   if (res === true) {
+  //     window.location.reload();
+  //   }
+  // }
+
+  render() {
+    const { username, password, errorMessage } = this.state;
+    return (
+      <div>
+        <h2
+          className='page-header'
+          style={{ textAlign: `center`, marginTop: `100px` }}
+        >
+          Login
+        </h2>
+        {errorMessage && (
+          <h4 style={{ textAlign: `center`, marginTop: `50px`, color: `red` }}>
+            {errorMessage}
+          </h4>
+        )}
+        <form
+          className='col-6'
+          style={{ margin: `auto` }}
+          onSubmit={this.onSubmit}
+        >
+          <div className='form-group'>
+            <label style={{ width: `150px` }}>Username</label>
+            <div className='Input'>
+              <input
+                placeholder='username'
+                name='username'
+                type='text'
+                value={username}
+                onChange={this.onChange}
+              />
+            </div>
+          </div>
+          <div className='form-group'>
+            <label style={{ width: `150px` }}>Password</label>
+            <div className='Input'>
+              <input
+                placeholder='password'
+                name='password'
+                type='password'
+                value={password}
+                onChange={this.onChange}
+              />
+            </div>
+          </div>
+          <div className='buttonContainer' style={{ justifyContent: `center` }}>
+            <div className='SaveContainer'>
+              <div className='buttonSave'>
+                <div>Register</div>
+              </div>
+              <div className='buttonSave'>
+                <div onClick={this.onSubmit}>Login</div>
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
-    </form>
-  );
+    );
+  }
 }
 
 export default Login;
