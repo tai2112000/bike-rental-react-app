@@ -15,6 +15,8 @@ import CampaignDetail from "../pages/campaignDetail/campaignDetail";
 import CreateCampaign from "../pages/createCampaign/CreateCampaign";
 import CreateArea from "../pages/arena/CreateArea";
 import BikeOfOwner from "../pages/bikeOfOwner/BikeOfOwner";
+import Pricelist from "../pages/pricelistBike/PriceList";
+import CreatePriceList from "../pages/createPriceList/CreatePriceList"
 const Routes = () => {
   return (
     <Switch>
@@ -26,6 +28,8 @@ const Routes = () => {
       <Route path='/owners' component={Owner} />
       <Route path='/campaigns' component={Campaign} />
       <Route path='/vouchers' component={Vouchers} />
+      <Route path='/pricelists' component={Pricelist} />
+      <Route path='/createpricelists' component={CreatePriceList} />
       <Route
         path='/createVoucher/:id'
         component={({ match }) => <CreateVoucher match={match} />}

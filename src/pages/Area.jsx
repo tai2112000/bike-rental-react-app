@@ -29,6 +29,9 @@ class Areas extends Component {
         <Link to='/createArea'>
           <button className='btn-create'>Create Area</button>
         </Link>
+        <Link to='/pricelists'>
+          <button className='btn-create'>Price Lists</button>
+        </Link>
         <div className='row'>
           <div className='col-12'>
             <div className='card'>
