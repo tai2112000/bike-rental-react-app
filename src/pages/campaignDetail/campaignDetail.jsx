@@ -109,18 +109,21 @@ class campaignDetail extends Component {
     // POST request using fetch with async/await
     const requestOptions = {
       method: "DELETE",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
       body: JSON.stringify(id),
     };
     const response = await fetch(
       "http://52.74.12.123/api/v2/vouchers",
       requestOptions
     );
-    const res = await response.json();
+    // const res = await response.json();
 
-    if (res === true) {
-      window.location.reload();
-    }
+    // if (res === true) {
+    window.location.reload();
+    // }
   }
 
   onSave = (e) => {
