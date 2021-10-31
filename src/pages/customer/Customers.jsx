@@ -56,7 +56,7 @@ class Customers extends Component {
       body: JSON.stringify(id),
     };
     const response = await fetch(
-      "http://52.74.12.123/api/v1/customers",
+      "http://18.138.110.46/api/v1/customers",
       requestOptions
     );
     const res = await response.json();
@@ -69,6 +69,7 @@ class Customers extends Component {
     const { listCustomer, searchInput, searchResult } = this.state;
     // console.log(searchInput);
     // console.log(listCustomer);
+    
     return (
       <div>
         <h2 className='page-header'>Customers</h2>
@@ -106,7 +107,7 @@ class Customers extends Component {
                           <td>{searchResult.phoneNumber}</td>
                           <td>{searchResult.rewardPoints}</td>
                           <td>
-                            {searchResult.isBanned === 1 ? "Banned" : "Active"}
+                            {searchResult.status === 1 ? "Banned" : "Active"}
                           </td>
                         </tr>
                       ) : (
@@ -116,16 +117,16 @@ class Customers extends Component {
                             <td>{item.phoneNumber}</td>
                             <td>{item.rewardPoints}</td>
                             <td>
-                            {item.isBanned === 1 ? "Banned" : "Active"}
+                            {item.status === 1 ? "Banned" : "Active"}
                           </td>
                             <td className='containerBtn'>
-                            {item.isBanned !== 1 ? (
+                            {item.status !== 1 ? (
                               <button
                                 type='submit'
                                 className='btnDelete'
                                 onClick={() => this.onDelete(item.id)}
                               >
-                                Delete
+                                Ban
                               </button>
                             ) : (
                               <></>

@@ -17,6 +17,7 @@ import CreateArea from "../pages/arena/CreateArea";
 import BikeOfOwner from "../pages/bikeOfOwner/BikeOfOwner";
 import Pricelist from "../pages/pricelistBike/PriceList";
 import CreatePriceList from "../pages/createPriceList/CreatePriceList";
+import PriceListDetail from "../pages/pricelistDetail/PriceListDetail";
 const Routes = () => {
   return (
     <Switch>
@@ -30,6 +31,7 @@ const Routes = () => {
       <Route path='/vouchers' component={Vouchers} />
       <Route path='/pricelists' component={Pricelist} />
       <Route path='/createpricelists' component={CreatePriceList} />
+      <Route path='/pricelistdetail' component={PriceListDetail} />
       <Route
         path='/createVoucher/:id'
         component={({ match, history }) => (

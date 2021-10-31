@@ -113,6 +113,17 @@ class Booking extends Component {
     return format.replace(/mm|dd|yy/gi, (matched) => map[matched]);
   };
 
+  getStatusName(status) {
+    switch (status) {
+      case 0:
+        return "Completed";
+      case 1:
+        return "Canceled";
+      default:
+        return "Pending";
+    }
+  }
+
   renderRowBooking(data = []) {
     let listRow = (
       <tr>
@@ -133,7 +144,7 @@ class Booking extends Component {
           <td>{this.formatDate(row.dayReturnExpected)}</td>
           <td>{`${row.price}VND`}</td>
           <td>{this.onGetAreaName(this.onGetAreaId(row.ownerId))}</td>
-          <td>{row.status}</td>
+          <td>{this.getStatusName(row.status)}</td>
         </tr>
       );
     });

@@ -61,6 +61,9 @@ class Pricelist extends Component {
         <Link to="/createpricelists">
           <button className="btn-create">Create Price</button>
         </Link>
+        <Link to={`pricelistdetail`}>
+          <button className='btn-create'>Edit</button>
+        </Link>
         <div className="row">
           <div className="col-12">
             <div className="card">
@@ -78,14 +81,6 @@ class Pricelist extends Component {
                           <td>{this.onGetAreaName(item.areaId)}</td>
                           <td>{this.onGetBikeType(item.motorTypeId)}</td>
                           <td>{item.price}</td>
-                          {/* <td className="containerBtn">
-                            <Link
-                              to={`priceListDetail/${item.id}/edit`}
-                              className="btnView"
-                            >
-                              View
-                            </Link>
-                          </td> */}
                         </tr>
                       ))}
                     </tbody>
