@@ -113,14 +113,13 @@ class Campaign extends Component {
   //   });
   // }
   async onDelete(id) {
-    // POST request using fetch with async/await
     const requestOptions = {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(id),
     };
     const response = await fetch(
-      "http://52.74.12.123/api/v1/campaigns",
+      "http://18.138.110.46/api/v1/campaigns",
       requestOptions
     );
     const res = await response.json();

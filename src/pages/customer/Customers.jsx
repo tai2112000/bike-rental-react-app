@@ -69,7 +69,7 @@ class Customers extends Component {
     const { listCustomer, searchInput, searchResult } = this.state;
     // console.log(searchInput);
     // console.log(listCustomer);
-    
+
     return (
       <div>
         <h2 className='page-header'>Customers</h2>
@@ -116,22 +116,20 @@ class Customers extends Component {
                             <td>{item.fullname}</td>
                             <td>{item.phoneNumber}</td>
                             <td>{item.rewardPoints}</td>
-                            <td>
-                            {item.status === 1 ? "Banned" : "Active"}
-                          </td>
+                            <td>{item.status === 1 ? "Banned" : "Active"}</td>
                             <td className='containerBtn'>
-                            {item.status !== 1 ? (
-                              <button
-                                type='submit'
-                                className='btnDelete'
-                                onClick={() => this.onDelete(item.id)}
-                              >
-                                Ban
-                              </button>
-                            ) : (
-                              <></>
-                            )}
-                          </td>
+                              {item.status !== 1 ? (
+                                <button
+                                  type='submit'
+                                  className='btnDelete'
+                                  onClick={() => this.onDelete(item.id)}
+                                >
+                                  Ban
+                                </button>
+                              ) : (
+                                <></>
+                              )}
+                            </td>
                           </tr>
                         ))
                       )}

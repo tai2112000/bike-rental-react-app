@@ -116,7 +116,7 @@ class campaignDetail extends Component {
       body: JSON.stringify(id),
     };
     const response = await fetch(
-      "http://52.74.12.123/api/v2/vouchers",
+      "http://18.138.110.46/api/v2/vouchers",
       requestOptions
     );
     // const res = await response.json();

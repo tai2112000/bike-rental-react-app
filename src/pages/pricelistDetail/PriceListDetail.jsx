@@ -54,17 +54,20 @@ class pricelistDetail extends Component {
     });
   };
 
-  onSave = (e) => {
+  onSave = async (e) => {
     const { selectedArea, selectedMotorType, newPrice } = this.state;
-    console.log("area: ",selectedArea, "type: ", selectedMotorType, "price: ", newPrice);
+    console.log(
+      "area: ",
+      selectedArea,
+      "type: ",
+      selectedMotorType,
+      "price: ",
+      newPrice
+    );
     callApi(
-      `pricelists?area=${selectedArea.value}&motorTypeId=${selectedMotorType.value}&price=${newPrice}`,
+      `pricelists?areaId=${selectedArea.value}&motorTypeId=${selectedMotorType.value}&price=${newPrice}`,
       "PUT",
-      {
-        motorTypeId: selectedMotorType.value,
-        areaId: selectedArea.value,
-        price: newPrice,
-      }
+      null
     ).then(() => {
       this.setState({
         isShowSuccessful: 1,
@@ -86,24 +89,24 @@ class pricelistDetail extends Component {
       isDisableCreateVoucher,
     } = this.state;
     const areaOptions = listArea.map((item) => ({
-        label: item.name,
-        value: item.id,
-      }));
-  
-      const typeOptions = listMotorType.map((item) => ({
-        label: item.name,
-        value: item.id,
-      }));
+      label: item.name,
+      value: item.id,
+    }));
+
+    const typeOptions = listMotorType.map((item) => ({
+      label: item.name,
+      value: item.id,
+    }));
 
     return (
       <div>
-        <h2 className="page-header">Price List Detail</h2>
+        <h2 className='page-header'>Price List Detail</h2>
         <form onSubmit={this.onSave}>
-          <div className="selectfiled">
+          <div className='selectfiled'>
             <label>Area: </label>
             <br />
             <Select
-              className="col-6"
+              className='col-6'
               onChange={(value) =>
                 this.setState({
                   selectedArea: value,
@@ -112,11 +115,11 @@ class pricelistDetail extends Component {
               options={areaOptions}
             />
           </div>
-          <div className="selectfiled">
+          <div className='selectfiled'>
             <label>Type: </label>
             <br />
             <Select
-              className="col-6"
+              className='col-6'
               onChange={(value) =>
                 this.setState({
                   selectedMotorType: value,
@@ -129,19 +132,19 @@ class pricelistDetail extends Component {
             <label>Price: </label>
             <br />
             <input
-              className="input col-6"
-              type="text"
+              className='input col-6'
+              type='text'
               value={newPrice}
-              name="newPrice"
+              name='newPrice'
               onChange={this.onChange}
             />
           </div>
-          <button className="btn-create" type="submit">
-            Edit
-          </button>
+          <div className='buttonSave'>
+            <div onClick={this.onSave}>Save</div>
+          </div>
         </form>
         {isShowSuccessful === 1 ? (
-          <div className="saveSuccess">Create Successful</div>
+          <div className='saveSuccess'>Create Successful</div>
         ) : (
           <div style={{ height: `50px` }}></div>
         )}

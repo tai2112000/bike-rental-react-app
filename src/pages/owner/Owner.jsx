@@ -34,7 +34,7 @@ class Owner extends Component {
       body: JSON.stringify(id),
     };
     const response = await fetch(
-      "http://52.74.12.123/api/v1/owners",
+      "http://18.138.110.46/api/v1/owners",
       requestOptions
     );
     const res = await response.json();
