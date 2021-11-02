@@ -1,0 +1,9 @@
+.imageContainer {
+  max-width: 80px;
+  max-height: 80px;
+}
+
+/* .imageContainer > img {
+  max-width: 40px;
+  max-height: 40px;
+} */
