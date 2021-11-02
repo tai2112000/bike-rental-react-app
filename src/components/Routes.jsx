@@ -31,7 +31,6 @@ const Routes = () => {
       <Route path='/vouchers' component={Vouchers} />
       <Route path='/pricelists' component={Pricelist} />
       <Route path='/createpricelists' component={CreatePriceList} />
-      <Route path='/pricelistdetail' component={PriceListDetail} />
       <Route
         path='/createVoucher/:id'
         component={({ match, history }) => (
@@ -41,6 +40,10 @@ const Routes = () => {
       <Route
         path='/campaignDetail/:id'
         component={({ match }) => <CampaignDetail match={match} />}
+      />
+      <Route
+        path='/pricelistdetail/:areaId&:motorTypeId&:motorName'
+        component={({ match }) => <PriceListDetail match={match} />}
       />
       <Route
         path='/bikeOfOwner/:id'

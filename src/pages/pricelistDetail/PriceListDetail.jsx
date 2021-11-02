@@ -8,17 +8,12 @@ class pricelistDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      areaId: "",
+      areaName:"",
+      motorTypeId:"",
+      motorTypeName:"",
       newPrice: "",
       listArea: [],
-      selectedArea: {
-        label: null,
-        value: null,
-      },
-      listMotorType: [],
-      selectedMotorType: {
-        label: null,
-        value: null,
-      },
       isShowSuccessful: 0,
       isDisableEdit: true,
       isDisableCreateVoucher: false,
@@ -28,14 +23,27 @@ class pricelistDetail extends Component {
   componentDidMount() {
     var { match } = this.props;
     if (match) {
+      var motorName = match.params.motorName;
+      var areaId = match.params.areaId;
+      var motorTypeId = match.params.motorTypeId;
+      this.setState(
+        {
+          motorName: motorName,
+          motorTypeId: motorTypeId
+        }
+      )
       callApi("motorTypes", "GET", null).then((res) => {
+        
         this.setState({
-          listMotorType: res.data,
-        });
+          listMotorType: res.data
+        })
+      
       });
-      callApi("areas", "GET", null).then((res) => {
+      callApi(`areas/${areaId}`, "GET", null).then((res) => {
+        var data = res.data;
         this.setState({
-          listArea: res.data,
+          areaId: data.id,
+          areaName: data.name,
         });
       });
     }
@@ -43,6 +51,16 @@ class pricelistDetail extends Component {
 
   componentWillUnmount() {
     if (this.timer) clearTimeout(this.timer);
+  }
+
+  onGetMotorTypeName(motorTypeId) {
+    let motorTypeName = "";
+    this.state.listMotorType.map((motor) => {
+      if (motorTypeId === motor.id) {
+        motorTypeName = motor.name;
+      }
+    });
+    return motorTypeName;
   }
 
   onChange = (e) => {
@@ -55,17 +73,18 @@ class pricelistDetail extends Component {
   };
 
   onSave = async (e) => {
-    const { selectedArea, selectedMotorType, newPrice } = this.state;
+    const { areaId, motorTypeId, newPrice } = this.state;
+    var { history } = this.props;
     console.log(
       "area: ",
-      selectedArea,
+      areaId,
       "type: ",
-      selectedMotorType,
+      motorTypeId,
       "price: ",
       newPrice
     );
     callApi(
-      `pricelists?areaId=${selectedArea.value}&motorTypeId=${selectedMotorType.value}&price=${newPrice}`,
+      `pricelists?areaId=${areaId}&motorTypeId=${motorTypeId}&price=${newPrice}`,
       "PUT",
       null
     ).then(() => {
@@ -81,51 +100,45 @@ class pricelistDetail extends Component {
 
   render() {
     const {
+      motorName,
+      motorTypeName,
+      motorTypeId,
       newPrice,
+      areaName,
       listArea,
       listMotorType,
       isShowSuccessful,
       isDisableEdit,
       isDisableCreateVoucher,
     } = this.state;
-    const areaOptions = listArea.map((item) => ({
-      label: item.name,
-      value: item.id,
-    }));
-
-    const typeOptions = listMotorType.map((item) => ({
-      label: item.name,
-      value: item.id,
-    }));
+    console.log(this.props);
 
     return (
       <div>
         <h2 className='page-header'>Price List Detail</h2>
         <form onSubmit={this.onSave}>
-          <div className='selectfiled'>
+        <div>
             <label>Area: </label>
             <br />
-            <Select
-              className='col-6'
-              onChange={(value) =>
-                this.setState({
-                  selectedArea: value,
-                })
-              }
-              options={areaOptions}
+            <input
+              className='input col-6'
+              type='text'
+              value={areaName}
+              name='areaName'
+              onChange={this.onChange}
+              disabled={isDisableEdit}
             />
           </div>
-          <div className='selectfiled'>
+          <div>
             <label>Type: </label>
             <br />
-            <Select
-              className='col-6'
-              onChange={(value) =>
-                this.setState({
-                  selectedMotorType: value,
-                })
-              }
-              options={typeOptions}
+            <input
+              className='input col-6'
+              type='text'
+              value={motorName}
+              name='motorName'
+              onChange={this.onChange}
+              disabled={isDisableEdit}
             />
           </div>
           <div>
@@ -144,7 +157,7 @@ class pricelistDetail extends Component {
           </div>
         </form>
         {isShowSuccessful === 1 ? (
-          <div className='saveSuccess'>Create Successful</div>
+          <div className='saveSuccess'>Edited</div>
         ) : (
           <div style={{ height: `50px` }}></div>
         )}
