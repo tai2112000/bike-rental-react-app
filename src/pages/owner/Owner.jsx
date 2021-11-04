@@ -30,17 +30,34 @@ class Owner extends Component {
     // POST request using fetch with async/await
     const requestOptions = {
       method: "DELETE",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
       body: JSON.stringify(id),
     };
     const response = await fetch(
       "http://18.138.110.46/api/v1/owners",
       requestOptions
     );
-    const res = await response.json();
-    if (res === true) {
-      window.location.reload();
-    }
+    window.location.reload();
+  }
+
+  async onUnBanned(id) {
+    // POST request using fetch with async/await
+    const requestOptions = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+      body: JSON.stringify(id),
+    };
+    const response = await fetch(
+      "http://18.138.110.46/api/v1/owners/unban",
+      requestOptions
+    );
+    window.location.reload();
   }
 
   onGetAreaName(areaId) {
@@ -58,12 +75,12 @@ class Owner extends Component {
 
     return (
       <div>
-        <h2 className='page-header'>Owners</h2>
-        <div className='row'>
-          <div className='col-12'>
-            <div className='card'>
-              <div className='card__body'>
-                <div className='table-wrapper'>
+        <h2 className="page-header">Owners</h2>
+        <div className="row">
+          <div className="col-12">
+            <div className="card">
+              <div className="card__body">
+                <div className="table-wrapper">
                   <table>
                     <thead>
                       <td>Name</td>
@@ -88,29 +105,29 @@ class Owner extends Component {
                           <td>{item.rating}</td>
                           <td>{item.numberOfRatings}</td>
                           <td>{this.onGetAreaName(item.areaId)}</td>
-                          <td>{item.status === 1 ? "Deactive" : "Active"}</td>
-                          <td className='containerBtn'>
+                          <td>{item.status === 1 ? "Banned" : "Active"}</td>
+                          <td className="containerBtn">
                             <Link
                               to={`bikeOfOwner/${item.id}`}
-                              className='btnViewBike'
+                              className="btnViewBike"
                             >
                               View Bike
                             </Link>
                             {item.status !== 1 ? (
                               <button
-                                type='submit'
-                                className='btnDelete'
+                                type="submit"
+                                className="btnDelete"
                                 onClick={() => this.onDelete(item.id)}
                               >
-                                Delete
+                                Ban
                               </button>
                             ) : (
                               <button
-                                type='submit'
-                                className='btnActive'
-                                // onClick={() => this.onDelete(item.id)}
+                                type="submit"
+                                className="btnDelete"
+                                onClick={() => this.onUnBanned(item.id)}
                               >
-                                Delete
+                                UnBanned
                               </button>
                             )}
                           </td>

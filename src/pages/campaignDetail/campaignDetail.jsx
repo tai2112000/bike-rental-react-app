@@ -277,6 +277,7 @@ class campaignDetail extends Component {
                     </thead>
                     <tbody>
                       {listVoucher.map((item) => (
+                        
                         <tr key={item.id}>
                           <td>{item.name}</td>
                           <td>{item.description}</td>
@@ -302,6 +303,7 @@ class campaignDetail extends Component {
                             )}
                           </td>
                         </tr>
+                      
                       ))}
                     </tbody>
                   </table>

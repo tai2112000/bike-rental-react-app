@@ -158,11 +158,11 @@ class pricelistDetail extends Component {
           </div>
           </div>
           <div className='buttonSave li'>
-            <div onClick={this.onSave}>Save</div>
+            <div onClick={this.onSave}>Edit</div>
           </div>
         </form>
         {isShowSuccessful === 1 ? (
-          <div className='saveSuccess'>Edited</div>
+          <div className='saveSuccess'>Edited !</div>
         ) : (
           <div style={{ height: `50px` }}></div>
         )}

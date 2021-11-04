@@ -52,17 +52,34 @@ class Customers extends Component {
     // POST request using fetch with async/await
     const requestOptions = {
       method: "DELETE",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
       body: JSON.stringify(id),
     };
     const response = await fetch(
       "http://18.138.110.46/api/v1/customers",
       requestOptions
     );
-    const res = await response.json();
-    if (res === true) {
-      window.location.reload();
-    }
+    window.location.reload();
+  }
+
+  async onUnBanned(id) {
+    // POST request using fetch with async/await
+    const requestOptions = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+      body: JSON.stringify(id),
+    };
+    const response = await fetch(
+      "http://18.138.110.46/api/v1/customers/unban",
+      requestOptions
+    );
+    window.location.reload();
   }
 
   render() {
@@ -127,7 +144,13 @@ class Customers extends Component {
                                   Ban
                                 </button>
                               ) : (
-                                <></>
+                                <button
+                                  type='submit'
+                                  className='btnDelete'
+                                  onClick={() => this.onUnBanned(item.id)}
+                                >
+                                  UnBanned
+                                </button>
                               )}
                             </td>
                           </tr>

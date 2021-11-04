@@ -115,17 +115,17 @@ class Campaign extends Component {
   async onDelete(id) {
     const requestOptions = {
       method: "DELETE",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
       body: JSON.stringify(id),
     };
     const response = await fetch(
       "http://18.138.110.46/api/v1/campaigns",
       requestOptions
     );
-    const res = await response.json();
-    if (res === true) {
-      window.location.reload();
-    }
+    window.location.reload();
   }
 
   onNext(currentPage) {
