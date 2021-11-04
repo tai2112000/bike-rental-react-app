@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./createPriceList.css";
+import "../createCampaign/createcampaign.css";
 import callApi from "../../utils/apiCaller";
 import Select from "react-select";
 
@@ -81,11 +81,10 @@ class CreateVoucher extends Component {
       <div>
         <h2 className="page-header">Create Price</h2>
         <form onSubmit={this.onSave}>
-          <div className="selectfiled">
-            <label>Area: </label>
-            <br />
+          <div className="form-group">
+            <label style={{ width: `150px` }}>Area</label>
             <Select
-              className="col-6"
+            className="selectedfield"
               onChange={(value) =>
                 this.setState({
                   selectedArea: value,
@@ -94,11 +93,11 @@ class CreateVoucher extends Component {
               options={areaOptions}
             />
           </div>
-          <div className="selectfiled">
-            <label>Type: </label>
-            <br />
+          <div className="form-group">
+            <label style={{ width: `150px` }}>Type</label>
             <Select
-              className="col-6"
+          
+            className="selectedfield"
               onChange={(value) =>
                 this.setState({
                   selectedMotorType: value,
@@ -107,18 +106,18 @@ class CreateVoucher extends Component {
               options={typeOptions}
             />
           </div>
-          <div>
-            <label>Price: </label>
-            <br />
+          <div className="form-group">
+            <label style={{ width: `150px` }}>Price</label>
+            <div className="Input">
             <input
-              className="input col-6"
               type="text"
               value={txtPrice}
               name="txtPrice"
               onChange={this.onChange}
             />
           </div>
-          <button className="btn-create" type="submit">
+          </div>
+          <button className="btn-create li" type="submit">
             Create
           </button>
         </form>

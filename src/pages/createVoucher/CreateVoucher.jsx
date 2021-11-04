@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./createvoucher.css";
 import callApi from "../../utils/apiCaller";
 import Select from "react-select";
 
@@ -123,88 +122,90 @@ class CreateVoucher extends Component {
       <div>
         <h2 className='page-header'>Create Voucher</h2>
         <form onSubmit={this.onSave}>
-          <div className='selectfiled'>
-            <label>For Campaign: </label>
-            <label>{campaignDescription}</label>
-          </div>
-          <div>
-            <label>Voucher Name: </label>
-            <br />
+          <div className="form-group">
+            <label style={{ width: `150px` }}>For Campaign</label>
+            <div className="Input">
+              <input disabled='true' type='text' value={campaignDescription} /> 
+            </div>
+            </div>
+          <div className="form-group">
+            <label style={{ width: `150px` }}>Voucher Name</label>
+            <div className="Input">
             <input
-              className='input col-6'
               type='text'
               value={txtVoucherName}
               name='txtVoucherName'
               onChange={this.onChange}
             />
           </div>
-          <div>
-            <label>Description: </label>
-            <br />
-            <textarea
-              className='textarea col-6'
+          </div>
+          <div className="form-group">
+            <label style={{ width: `150px` }}>Description</label>
+            <div className="Input">
+            <input
               type='text'
               value={txtDescription}
               name='txtDescription'
               onChange={this.onChange}
             />
           </div>
-          <div>
-            <label>Discount Percent: </label>
-            <br />
+          </div>
+          <div className="form-group">
+            <label style={{ width: `150px` }}>Discount Percent</label>
+            <div className="Input">
             <input
-              className='input col-2'
               type='text'
               value={txtDiscountPercent}
               name='txtDiscountPercent'
               onChange={this.onChange}
             />
           </div>
-          <div>
-            <label>Max Amount: </label>
-            <br />
+          </div>
+          <div className="form-group">
+            <label style={{ width: `150px` }}>Max Amount</label>
+            <div className="Input">
             <input
-              className='input col-2'
               type='text'
               value={txtMaxAmount}
               name='txtMaxAmount'
               onChange={this.onChange}
             />
           </div>
-          <div>
-            <label>Quantity: </label>
-            <br />
+          </div>
+          <div className="form-group">
+            <label style={{ width: `150px` }}>Quantity</label>
+            <div className="Input">
             <input
-              className='input col-2'
               type='text'
               value={txtRemain}
               name='txtRemain'
               onChange={this.onChange}
             />
           </div>
-          <div>
-            <label>Starting Date: </label>
-            <br />
+          </div>
+          <div className='form-group'>
+            <label style={{ width: `150px` }}>Starting Date</label>
+            <div className='Input'>
             <input
-              className='input col-2'
               type='date'
               value={dateStart}
               name='dateStart'
               onChange={this.onChange}
             />
           </div>
-          <div>
-            <label>End Date: </label>
-            <br />
+          </div>
+          <div className='form-group'>
+            <label style={{ width: `150px` }}>End Date</label>
+            <div className='Input'>
             <input
-              className='input col-2'
               type='date'
               value={dateEnd}
               name='dateEnd'
               onChange={this.onChange}
             />
           </div>
-          <button className='btn-create' type='submit'>
+          </div>
+          <button className='btn-create li' type='submit'>
             Create
           </button>
         </form>

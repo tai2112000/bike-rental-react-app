@@ -71,6 +71,7 @@ class Pricelist extends Component {
                       <td>Area</td>
                       <td>Type</td>
                       <td>Price</td>
+                      <td></td>
                     </thead>
                     <tbody>
                       {listPrice.map((item) => (
@@ -78,17 +79,23 @@ class Pricelist extends Component {
                           <td>{this.onGetAreaName(item.areaId)}</td>
                           <td>{this.onGetBikeType(item.motorTypeId)}</td>
                           <td>{item.price}</td>
-                          <Link
-                              to={`pricelistdetail/${item.areaId}&${item.motorTypeId}&${this.onGetBikeType(item.motorTypeId)}`}
-                              className='btnView'
+                          <td className="containerBtn">
+                            <Link
+                              to={`pricelistdetail/${item.areaId}&${
+                                item.motorTypeId
+                              }&${this.onGetBikeType(item.motorTypeId)}&${
+                                item.price
+                              }`}
+                              className="btnView"
                             >
                               View
                             </Link>
+                          </td>
                         </tr>
                       ))}
                     </tbody>
                   </table>
-                </div>``
+                </div>
               </div>
             </div>
           </div>

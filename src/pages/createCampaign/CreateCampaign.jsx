@@ -70,14 +70,14 @@ class CreateCampaign extends Component {
 
     return (
       <div>
-        <h2 className='page-header'>Create Campaign</h2>
+        <h2 className="page-header">Create Campaign</h2>
 
         <form onSubmit={this.onSave}>
-          <div className='selectfiled'>
-            <label>Area: </label>
-            <br />
+          <div className="form-group">
+            <label style={{ width: `150px` }}>Area</label>
+
             <Select
-              className='col-6'
+              className="selectedfield"
               onChange={(value) =>
                 this.setState({
                   selectedArea: value,
@@ -86,46 +86,45 @@ class CreateCampaign extends Component {
               options={options}
             />
           </div>
-          <div>
-            <label>Description: </label>
-            <br />
-            <textarea
-              className='textarea col-6'
-              type='text'
-              value={txtDescription}
-              name='txtDescription'
-              onChange={this.onChange}
-            />
+          <div className="form-group">
+            <label style={{ width: `150px` }}>Description</label>
+            <div className="Input">
+              <input
+                type="text"
+                value={txtDescription}
+                name="txtDescription"
+                onChange={this.onChange}
+              />
+            </div>
           </div>
-          <div>
-            <label>Starting Date: </label>
-            <br />
+          <div className='form-group'>
+            <label style={{ width: `150px` }}>Starting Date</label>
+            <div className='Input'>
             <input
-              className='input col-2'
-              type='date'
+              type="date"
               value={dateStart}
-              name='dateStart'
+              name="dateStart"
               onChange={this.onChange}
             />
           </div>
-          <div>
-            <label>End Date: </label>
-            <br />
+          </div>
+          <div className='form-group'>
+            <label style={{ width: `150px` }}>End Date</label>
+            <div className='Input'>
             <input
-              className='input col-2'
-              type='date'
+              type="date"
               value={dateEnd}
-              name='dateEnd'
+              name="dateEnd"
               onChange={this.onChange}
             />
           </div>
-          <button className='btn-create' type='submit'>
-            {/* <Link to="/campaigns">Create</Link> */}
+          </div>
+          <button className="btn-create li" type="submit">
             Create
           </button>
         </form>
         {isShowSuccessful === 1 ? (
-          <div className='saveSuccess'>Create Successful</div>
+          <div className="saveSuccess">Create Successful</div>
         ) : (
           <div style={{ height: `50px` }}></div>
         )}

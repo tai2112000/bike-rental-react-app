@@ -57,29 +57,29 @@ class CreateVoucher extends Component {
       <div>
         <h2 className="page-header">Create Area</h2> 
         <form onSubmit={this.onSave}>
-          <div>
-            <label>Postal Code: </label>
-            <br />
+          <div className='form-group'>
+            <label style={{ width: `150px` }}>Postal Code</label>
+            <div className="Input">
             <input
-              className="input col-6"
               type="text"
               value={txtPostalCode}
               name="txtPostalCode"
               onChange={this.onChange}
             />
           </div>
-          <div>
-            <label>Name: </label>
-            <br />
+          </div>
+          <div className='form-group'>
+            <label style={{ width: `150px` }}>Name</label>
+            <div className="Input">
             <input
-              className="input col-6"
               type="text"
               value={txtName}
               name="txtName"
               onChange={this.onChange}
             />
           </div>
-          <button className="btn-create" type="submit">
+          </div>
+          <button className="btn-create li" type="submit">
             Create
           </button>
         </form>

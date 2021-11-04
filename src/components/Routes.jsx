@@ -42,7 +42,7 @@ const Routes = () => {
         component={({ match }) => <CampaignDetail match={match} />}
       />
       <Route
-        path='/pricelistdetail/:areaId&:motorTypeId&:motorName'
+        path='/pricelistdetail/:areaId&:motorTypeId&:motorName&:oldPrice'
         component={({ match }) => <PriceListDetail match={match} />}
       />
       <Route

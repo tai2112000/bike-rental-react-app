@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import callApi_V2 from "../../utils/apiCallerV2";
 import callApi from "../../utils/apiCaller.js";
-// import "./pricelistDetail/priceListDetail.css"
+import "../pricelistDetail/priceListDetail.css"
 import Select from "react-select";
 import { Link } from "react-router-dom";
 class pricelistDetail extends Component {
@@ -13,6 +13,7 @@ class pricelistDetail extends Component {
       motorTypeId:"",
       motorTypeName:"",
       newPrice: "",
+      oldPrice:"",
       listArea: [],
       isShowSuccessful: 0,
       isDisableEdit: true,
@@ -26,10 +27,12 @@ class pricelistDetail extends Component {
       var motorName = match.params.motorName;
       var areaId = match.params.areaId;
       var motorTypeId = match.params.motorTypeId;
+      var oldPrice = match.params.oldPrice;
       this.setState(
         {
           motorName: motorName,
-          motorTypeId: motorTypeId
+          motorTypeId: motorTypeId,
+          oldPrice: oldPrice,
         }
       )
       callApi("motorTypes", "GET", null).then((res) => {
@@ -105,6 +108,7 @@ class pricelistDetail extends Component {
       motorTypeId,
       newPrice,
       areaName,
+      oldPrice,
       listArea,
       listMotorType,
       isShowSuccessful,
@@ -117,11 +121,10 @@ class pricelistDetail extends Component {
       <div>
         <h2 className='page-header'>Price List Detail</h2>
         <form onSubmit={this.onSave}>
-        <div>
-            <label>Area: </label>
-            <br />
+        <div className="form-group">
+            <label style={{ width: `150px` }}>Area</label>
+            <div className="Input">
             <input
-              className='input col-6'
               type='text'
               value={areaName}
               name='areaName'
@@ -129,11 +132,11 @@ class pricelistDetail extends Component {
               disabled={isDisableEdit}
             />
           </div>
-          <div>
-            <label>Type: </label>
-            <br />
+          </div>
+          <div className='form-group'>
+            <label style={{ width: `150px` }}>Type</label>
+            <div className='Input'>
             <input
-              className='input col-6'
               type='text'
               value={motorName}
               name='motorName'
@@ -141,18 +144,20 @@ class pricelistDetail extends Component {
               disabled={isDisableEdit}
             />
           </div>
-          <div>
-            <label>Price: </label>
-            <br />
+          </div>
+          <div className="form-group">
+            <label style={{ width: `150px` }}>Price</label>
+            <div className="Input">
             <input
-              className='input col-6'
               type='text'
               value={newPrice}
               name='newPrice'
+              placeholder={oldPrice}
               onChange={this.onChange}
             />
           </div>
-          <div className='buttonSave'>
+          </div>
+          <div className='buttonSave li'>
             <div onClick={this.onSave}>Save</div>
           </div>
         </form>

@@ -1,48 +1,158 @@
 .form {
-    font-size    : 16px;
-    padding      : 30px;
-    margin-bottom: 30px;
+    display       : flex;
+    flex-direction: row;
+    padding-bottom: 10px;
 }
 
 .form-group {
-    height       : auto;
-    font-size    : 15px;
-    padding      : 10px;
-    margin-bottom: 10px;
-
-
+    padding        : 40px;
+    height         : 50px;
+    display        : flex;
+    align-items    : center;
+    justify-content: space-between;
 }
 
-.input {
-    height          : 30px;
-    width           : max-content;
+.form-group-area {
+    padding    : 40px;
+    height     : 50px;
+    display    : flex;
+    align-items: center;
+}
+
+.selectedfield {
+    position        : relative;
+    height          : 100%;
+    width           : 100%;
     background-color: var(--main-bg);
-    box-shadow      : var(--box-shadow);
-    border-radius   : 5px;
-    margin-top      : 5px;
-    margin-bottom   : 25px;
+    display         : block;
+    align-items     : center;
+
 }
 
-.textarea {
-    height          : 80px;
-    width           : 40%;
+.Input {
+    position        : relative;
+    height          : 50px;
+    width           : 100%;
     background-color: var(--main-bg);
-    box-shadow      : var(--box-shadow);
-    border-radius   : 5px;
-    margin-top      : 5px;
-    margin-bottom   : 25px;
-}
-
-.selectfiled {
-
-    margin-top   : 5px;
-    margin-bottom: 25px;
-}
-
-
-.btnSub {
-
-    background-color: gray;
+    display         : flex;
+    align-items     : center;
     box-shadow      : var(--box-shadow);
     border-radius   : var(--border-radius);
+    overflow        : hidden;
+}
+
+.Input>input {
+    height          : 50px;
+    width           : 100%;
+    padding         : 10px 60px 10px 20px;
+    font-size       : 1rem;
+    border-radius   : var(--border-radius);
+    color           : var(--txt-color);
+    background-color: var(--main-bg);
+}
+
+.buttonContainer {
+    display        : flex;
+    justify-content: space-between;
+}
+
+.buttonSave {
+    margin-left     : 20px;
+    margin-right    : 50px;
+    position        : relative;
+    height          : 50px;
+    width           : 150px;
+    text-align      : center;
+    background-color: var(--main-bg);
+    box-shadow      : var(--box-shadow);
+    border-radius   : var(--border-radius);
+    overflow        : hidden;
+    display         : flex;
+    flex-direction  : column;
+    justify-content : center;
+    cursor          : pointer;
+}
+
+.buttonSave:hover {
+    background-color: var(--main-color);
+}
+
+.SaveContainer {
+    display: flex;
+}
+
+.saveSuccess {
+    margin-left     : 20px;
+    position        : relative;
+    height          : 50px;
+    width           : 300px;
+    text-align      : center;
+    background-color: rgb(90, 226, 90);
+    color           : red;
+    box-shadow      : var(--box-shadow);
+    border-radius   : var(--border-radius);
+    overflow        : hidden;
+    display         : flex;
+    flex-direction  : column;
+    justify-content : center;
+}
+
+.btn-create {
+
+    height          : 50px;
+    width           : 120px;
+    cursor          : pointer;
+    border          : 5px;
+    outline         : 0;
+    color           : var(--txt-color);
+    background-color: var(--main-bg);
+    box-shadow      : var(--box-shadow);
+    border-radius   : var(--border-radius);
+    margin-bottom   : 20px;
+}
+
+.btn-create:hover {
+    background-color: var(--main-color);
+}
+
+.li {
+    float: right;
+}
+
+
+.btn-disable {
+    height          : 30px;
+    width           : 120px;
+    cursor          : pointer;
+    border          : 5px;
+    outline         : 0;
+    color           : var(--txt-white);
+    background-color: rgb(98, 101, 98);
+    box-shadow      : var(--box-shadow);
+    border-radius   : var(--border-radius);
+    margin-bottom   : 20px;
+}
+
+.containerBtn {
+    display: flex;
+}
+
+.btnDelete {
+    position        : relative;
+    text-align      : center;
+    width           : 50px;
+    height          : 30px;
+    background-color: red;
+    color           : white;
+    border-radius   : 8px;
+    display         : flex;
+    flex-direction  : column;
+    justify-content : center;
+    align-items     : center;
+    cursor          : pointer;
+    margin-left     : 10px;
+}
+
+.btnDelete:hover {
+    background-color: rgb(20, 224, 54);
 }
