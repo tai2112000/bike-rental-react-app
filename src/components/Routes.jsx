@@ -18,6 +18,7 @@ import BikeOfOwner from "../pages/bikeOfOwner/BikeOfOwner";
 import Pricelist from "../pages/pricelistBike/PriceList";
 import CreatePriceList from "../pages/createPriceList/CreatePriceList";
 import PriceListDetail from "../pages/pricelistDetail/PriceListDetail";
+import BikeDetail from "../pages/bikeDetail/bikeDetail";
 const Routes = () => {
   return (
     <Switch>
@@ -54,6 +55,10 @@ const Routes = () => {
         component={({ history }) => <CreateCampaign history={history} />}
       />
       <Route path='/createArea' component={CreateArea} />
+      <Route
+        path='/bikeDetail/:bikeID'
+        component={({ match }) => <BikeDetail match={match} />}
+      />
     </Switch>
   );
 };

@@ -74,11 +74,6 @@ class BikeOfOwner extends Component {
     return (
       <div>
         <h2 className='page-header'>Bikes Of {OwnerName}</h2>
-        <h4>img URL:</h4>
-        <img
-          className='imageContainer'
-          src={this.onGetImgUrl("defaultimage.jpg")}
-        />
         <div className='row'>
           <div className='col-12'>
             <div className='card'>
@@ -86,33 +81,31 @@ class BikeOfOwner extends Component {
                 <div className='table-wrapper'>
                   <table>
                     <thead>
-                      <td>Image</td>
                       <td>License Plate</td>
                       <td>Brand</td>
                       <td>Category</td>
                       <td>Color</td>
                       <td>Model Year</td>
                       <td>Status</td>
+                      <td>Event</td>
                     </thead>
                     <tbody>
                       {listBike.map((item) => (
                         <tr key={item.id}>
-                          <td>
-                            <img
-                              className='imageContainer'
-                              src={
-                                item.imgPath
-                                  ? this.onGetImgUrl(item.imgPath)
-                                  : defaultImgURL
-                              }
-                            />
-                          </td>
                           <td>{item.licensePlate}</td>
                           <td>{item.brandName}</td>
                           <td>{item.categoryName}</td>
                           <td>{item.color}</td>
                           <td>{item.modelYear}</td>
                           <td>{this.getStatusName(item.status)}</td>
+                          <td>
+                            <Link
+                              to={`/bikeDetail/${item.id}`}
+                              className='btnView'
+                            >
+                              Detail
+                            </Link>
+                          </td>
                         </tr>
                       ))}
                     </tbody>
