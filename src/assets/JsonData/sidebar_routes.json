@@ -7,7 +7,7 @@
   {
     "display_name": "Bookings",
     "route": "/bookings",
-    "icon": "bx bx-package"
+    "icon": "bx bx-cart"
   },
   {
     "display_name": "Customers",
@@ -17,16 +17,16 @@
   {
     "display_name": "Owners",
     "route": "/owners",
-    "icon": "bx bx-user-pin"
+    "icon": "bx bx-id-card"
   },
   {
     "display_name": "Campaigns",
     "route": "/campaigns",
-    "icon": "bx bx-user-pin"
+    "icon": "bx bx-line-chart"
   },
   {
     "display_name": "Areas",
     "route": "/areas",
-    "icon": "bx bx-user-pin"
+    "icon": "bx bx-map"
   }
 ]

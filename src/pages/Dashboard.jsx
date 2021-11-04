@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { Component, useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
 
@@ -13,6 +13,8 @@ import Table from "../components/table/Table";
 import Badge from "../components/badge/Badge";
 
 import statusCards from "../assets/JsonData/status-card-data.json";
+import callApi_V2 from "../utils/apiCallerV2";
+import callApi from "../utils/apiCaller";
 
 const chartOptions = {
   series: [
@@ -161,29 +163,97 @@ const renderOrderBody = (item, index) => (
   </tr>
 );
 
-const Dashboard = () => {
-  const themeReducer = useSelector((state) => state.ThemeReducer.mode);
+class Dashboard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      dashboardList: [],
+      apiURL: "",
+      searchInput: "",
+      searchResult: null,
+    };
+  }
 
-  return (
-    <div>
-      <h2 className='page-header'>Dashboard</h2>
-      <div className='row'>
-        <div className='col-12'>
-          <div className='row'>
-            {statusCards.map((item, index) => (
-              <div className='col-6' key={index}>
-                <StatusCard
-                  icon={item.icon}
-                  count={item.count}
-                  title={item.title}
-                />
-              </div>
-            ))}
+  componentDidMount() {
+    callApi_V2("admins/customers", "GET", null).then((res) => {
+      this.setState({
+        dashboardList: [
+          ...this.state.dashboardList,
+          {
+            title: "Total Customers",
+            icon: "bx bx-user-pin",
+            link: "/customers",
+            count: res.data.length,
+          },
+        ],
+      });
+    });
+    callApi("owners?page=1", "GET", null).then((res) => {
+      this.setState({
+        dashboardList: [
+          ...this.state.dashboardList,
+          {
+            title: "Total Owners",
+            icon: "bx bx-id-card",
+            link: "/owners",
+            count: res.data.data.length,
+          },
+        ],
+      });
+    });
+    callApi("bookings", "GET", null).then((res) => {
+      this.setState({
+        dashboardList: [
+          ...this.state.dashboardList,
+          {
+            title: "Total Bookings",
+            icon: "bx bx-cart",
+            link: "/bookings",
+            count: res.data.length,
+          },
+        ],
+      });
+    });
+    callApi("areas", "GET", null).then((res) => {
+      this.setState({
+        dashboardList: [
+          ...this.state.dashboardList,
+          {
+            title: "Total Areas",
+            icon: "bx bx-map",
+            link: "/areas",
+            count: res.data.length,
+          },
+        ],
+      });
+    });
+  }
+
+  render() {
+    const { dashboardList } = this.state;
+    console.log(dashboardList);
+    return (
+      <div>
+        <h2 className='page-header'>Dashboard</h2>
+        <div className='row'>
+          <div className='col-12'>
+            <div className='row'>
+              {dashboardList.map((item, index) => (
+                <div className='col-6' key={index}>
+                  <StatusCard
+                    icon={item.icon}
+                    count={item.count}
+                    title={item.title}
+                    link={item.link}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default Dashboard;
