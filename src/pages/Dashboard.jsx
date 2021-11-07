@@ -209,7 +209,7 @@ class Dashboard extends Component {
             title: "Total Bookings",
             icon: "bx bx-cart",
             link: "/bookings",
-            count: res.data.length,
+            count: res.data.data.length,
           },
         ],
       });
