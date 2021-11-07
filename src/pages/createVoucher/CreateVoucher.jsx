@@ -28,18 +28,9 @@ class CreateVoucher extends Component {
 
   componentDidMount() {
     callApi("campaigns?page=1", "GET", null).then((res) => {
-      // res = null => not display btn next
-      if (res === null || res.data.data.length > 8) {
-        this.setState({
-          showNext: false,
-          listCampaign: res.data.data,
-        });
-      } else {
-        this.setState({
-          listCampaign: res.data.data,
-          showNext: true,
-        });
-      }
+      this.setState({
+        listCampaign: res.data.data,
+      });
     });
     var { match } = this.props;
     if (match) {
@@ -89,11 +80,7 @@ class CreateVoucher extends Component {
       voucherItemsRemain: txtRemain,
       campaignId: campaignId,
     }).then((res) => {
-      // if (res) {
-      //   history.goBack();
-      // }
       if (res) {
-        console.log(res);
         this.setState({
           isShowSuccessful: 1,
         });
@@ -122,88 +109,88 @@ class CreateVoucher extends Component {
       <div>
         <h2 className='page-header'>Create Voucher</h2>
         <form onSubmit={this.onSave}>
-          <div className="form-group">
+          <div className='form-group'>
             <label style={{ width: `150px` }}>For Campaign</label>
-            <div className="Input">
-              <input disabled='true' type='text' value={campaignDescription} /> 
+            <div className='Input'>
+              <input disabled='true' type='text' value={campaignDescription} />
             </div>
-            </div>
-          <div className="form-group">
+          </div>
+          <div className='form-group'>
             <label style={{ width: `150px` }}>Voucher Name</label>
-            <div className="Input">
-            <input
-              type='text'
-              value={txtVoucherName}
-              name='txtVoucherName'
-              onChange={this.onChange}
-            />
+            <div className='Input'>
+              <input
+                type='text'
+                value={txtVoucherName}
+                name='txtVoucherName'
+                onChange={this.onChange}
+              />
+            </div>
           </div>
-          </div>
-          <div className="form-group">
+          <div className='form-group'>
             <label style={{ width: `150px` }}>Description</label>
-            <div className="Input">
-            <input
-              type='text'
-              value={txtDescription}
-              name='txtDescription'
-              onChange={this.onChange}
-            />
+            <div className='Input'>
+              <input
+                type='text'
+                value={txtDescription}
+                name='txtDescription'
+                onChange={this.onChange}
+              />
+            </div>
           </div>
-          </div>
-          <div className="form-group">
+          <div className='form-group'>
             <label style={{ width: `150px` }}>Discount Percent</label>
-            <div className="Input">
-            <input
-              type='text'
-              value={txtDiscountPercent}
-              name='txtDiscountPercent'
-              onChange={this.onChange}
-            />
+            <div className='Input'>
+              <input
+                type='text'
+                value={txtDiscountPercent}
+                name='txtDiscountPercent'
+                onChange={this.onChange}
+              />
+            </div>
           </div>
-          </div>
-          <div className="form-group">
+          <div className='form-group'>
             <label style={{ width: `150px` }}>Max Amount</label>
-            <div className="Input">
-            <input
-              type='text'
-              value={txtMaxAmount}
-              name='txtMaxAmount'
-              onChange={this.onChange}
-            />
+            <div className='Input'>
+              <input
+                type='text'
+                value={txtMaxAmount}
+                name='txtMaxAmount'
+                onChange={this.onChange}
+              />
+            </div>
           </div>
-          </div>
-          <div className="form-group">
+          <div className='form-group'>
             <label style={{ width: `150px` }}>Quantity</label>
-            <div className="Input">
-            <input
-              type='text'
-              value={txtRemain}
-              name='txtRemain'
-              onChange={this.onChange}
-            />
-          </div>
+            <div className='Input'>
+              <input
+                type='text'
+                value={txtRemain}
+                name='txtRemain'
+                onChange={this.onChange}
+              />
+            </div>
           </div>
           <div className='form-group'>
             <label style={{ width: `150px` }}>Starting Date</label>
             <div className='Input'>
-            <input
-              type='date'
-              value={dateStart}
-              name='dateStart'
-              onChange={this.onChange}
-            />
-          </div>
+              <input
+                type='date'
+                value={dateStart}
+                name='dateStart'
+                onChange={this.onChange}
+              />
+            </div>
           </div>
           <div className='form-group'>
             <label style={{ width: `150px` }}>End Date</label>
             <div className='Input'>
-            <input
-              type='date'
-              value={dateEnd}
-              name='dateEnd'
-              onChange={this.onChange}
-            />
-          </div>
+              <input
+                type='date'
+                value={dateEnd}
+                name='dateEnd'
+                onChange={this.onChange}
+              />
+            </div>
           </div>
           <button className='btn-create li' type='submit'>
             Create

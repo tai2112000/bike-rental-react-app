@@ -80,9 +80,7 @@ class Vouchers extends Component {
   }
 
   render() {
-    const { listVoucher, listCampaign } = this.state;
-
-    console.log(listVoucher);
+    const { listVoucher } = this.state;
     return (
       <div>
         <h2 className='page-header'>Vouchers</h2>

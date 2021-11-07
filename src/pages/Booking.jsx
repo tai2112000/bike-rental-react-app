@@ -15,9 +15,9 @@ class Booking extends Component {
   }
 
   componentDidMount() {
-    callApi("bookings", "GET", null).then((res) => {
+    callApi("bookings?status=0&pageNum=1", "GET", null).then((res) => {
       this.setState({
-        listBooking: res.data,
+        listBooking: res.data.data,
       });
     });
     callApi_V2("admins/customers", "GET", null).then((res) => {
@@ -116,11 +116,13 @@ class Booking extends Component {
   getStatusName(status) {
     switch (status) {
       case 0:
-        return "Completed";
-      case 1:
-        return "Canceled";
-      default:
         return "Pending";
+      case 1:
+        return "Inprocess";
+      case 2:
+        return "Finished";
+      default:
+        return "Canceled";
     }
   }
 
@@ -152,8 +154,7 @@ class Booking extends Component {
   }
 
   render() {
-    const { listBooking, listOwner, listBike } = this.state;
-    console.log(listBike);
+    const { listBooking } = this.state;
 
     return (
       <div>

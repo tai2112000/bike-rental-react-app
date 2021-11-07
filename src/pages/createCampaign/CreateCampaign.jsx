@@ -40,8 +40,6 @@ class CreateCampaign extends Component {
 
   onSave = (e) => {
     e.preventDefault();
-    console.log(this.state);
-    console.log(this.state.selectedArea.value);
     const { txtDescription, selectedArea, dateStart, dateEnd } = this.state;
     var { history } = this.props;
     callApi("campaigns", "POST", {
@@ -70,14 +68,14 @@ class CreateCampaign extends Component {
 
     return (
       <div>
-        <h2 className="page-header">Create Campaign</h2>
+        <h2 className='page-header'>Create Campaign</h2>
 
         <form onSubmit={this.onSave}>
-          <div className="form-group">
+          <div className='form-group'>
             <label style={{ width: `150px` }}>Area</label>
 
             <Select
-              className="selectedfield"
+              className='selectedfield'
               onChange={(value) =>
                 this.setState({
                   selectedArea: value,
@@ -86,13 +84,13 @@ class CreateCampaign extends Component {
               options={options}
             />
           </div>
-          <div className="form-group">
+          <div className='form-group'>
             <label style={{ width: `150px` }}>Description</label>
-            <div className="Input">
+            <div className='Input'>
               <input
-                type="text"
+                type='text'
                 value={txtDescription}
-                name="txtDescription"
+                name='txtDescription'
                 onChange={this.onChange}
               />
             </div>
@@ -100,31 +98,31 @@ class CreateCampaign extends Component {
           <div className='form-group'>
             <label style={{ width: `150px` }}>Starting Date</label>
             <div className='Input'>
-            <input
-              type="date"
-              value={dateStart}
-              name="dateStart"
-              onChange={this.onChange}
-            />
-          </div>
+              <input
+                type='date'
+                value={dateStart}
+                name='dateStart'
+                onChange={this.onChange}
+              />
+            </div>
           </div>
           <div className='form-group'>
             <label style={{ width: `150px` }}>End Date</label>
             <div className='Input'>
-            <input
-              type="date"
-              value={dateEnd}
-              name="dateEnd"
-              onChange={this.onChange}
-            />
+              <input
+                type='date'
+                value={dateEnd}
+                name='dateEnd'
+                onChange={this.onChange}
+              />
+            </div>
           </div>
-          </div>
-          <button className="btn-create li" type="submit">
+          <button className='btn-create li' type='submit'>
             Create
           </button>
         </form>
         {isShowSuccessful === 1 ? (
-          <div className="saveSuccess">Create Successful</div>
+          <div className='saveSuccess'>Create Successful</div>
         ) : (
           <div style={{ height: `50px` }}></div>
         )}

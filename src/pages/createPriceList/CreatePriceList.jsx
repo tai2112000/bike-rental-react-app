@@ -47,7 +47,6 @@ class CreateVoucher extends Component {
   onSave = (e) => {
     e.preventDefault();
     const { selectedArea, selectedMotorType, txtPrice } = this.state;
-    console.log(selectedArea,  selectedMotorType, txtPrice);
 
     callApi("pricelists", "POST", {
       motorTypeId: selectedMotorType.value,
@@ -79,12 +78,12 @@ class CreateVoucher extends Component {
 
     return (
       <div>
-        <h2 className="page-header">Create Price</h2>
+        <h2 className='page-header'>Create Price</h2>
         <form onSubmit={this.onSave}>
-          <div className="form-group">
+          <div className='form-group'>
             <label style={{ width: `150px` }}>Area</label>
             <Select
-            className="selectedfield"
+              className='selectedfield'
               onChange={(value) =>
                 this.setState({
                   selectedArea: value,
@@ -93,11 +92,10 @@ class CreateVoucher extends Component {
               options={areaOptions}
             />
           </div>
-          <div className="form-group">
+          <div className='form-group'>
             <label style={{ width: `150px` }}>Type</label>
             <Select
-          
-            className="selectedfield"
+              className='selectedfield'
               onChange={(value) =>
                 this.setState({
                   selectedMotorType: value,
@@ -106,23 +104,23 @@ class CreateVoucher extends Component {
               options={typeOptions}
             />
           </div>
-          <div className="form-group">
+          <div className='form-group'>
             <label style={{ width: `150px` }}>Price</label>
-            <div className="Input">
-            <input
-              type="text"
-              value={txtPrice}
-              name="txtPrice"
-              onChange={this.onChange}
-            />
+            <div className='Input'>
+              <input
+                type='text'
+                value={txtPrice}
+                name='txtPrice'
+                onChange={this.onChange}
+              />
+            </div>
           </div>
-          </div>
-          <button className="btn-create li" type="submit">
+          <button className='btn-create li' type='submit'>
             Create
           </button>
         </form>
         {isShowSuccessful === 1 ? (
-          <div className="saveSuccess">Create Successful</div>
+          <div className='saveSuccess'>Create Successful</div>
         ) : (
           <div style={{ height: `50px` }}></div>
         )}

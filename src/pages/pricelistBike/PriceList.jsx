@@ -53,19 +53,17 @@ class Pricelist extends Component {
 
   render() {
     const { listPrice } = this.state;
-
-    console.log(listPrice);
     return (
       <div>
-        <h2 className="page-header">Price List</h2>
-        <Link to="/createpricelists">
-          <button className="btn-create">Create Price</button>
+        <h2 className='page-header'>Price List</h2>
+        <Link to='/createpricelists'>
+          <button className='btn-create'>Create Price</button>
         </Link>
-        <div className="row">
-          <div className="col-12">
-            <div className="card">
-              <div className="card__body">
-                <div className="table-wrapper">
+        <div className='row'>
+          <div className='col-12'>
+            <div className='card'>
+              <div className='card__body'>
+                <div className='table-wrapper'>
                   <table>
                     <thead>
                       <td>Area</td>
@@ -79,14 +77,14 @@ class Pricelist extends Component {
                           <td>{this.onGetAreaName(item.areaId)}</td>
                           <td>{this.onGetBikeType(item.motorTypeId)}</td>
                           <td>{item.price}</td>
-                          <td className="containerBtn">
+                          <td className='containerBtn'>
                             <Link
                               to={`pricelistdetail/${item.areaId}&${
                                 item.motorTypeId
                               }&${this.onGetBikeType(item.motorTypeId)}&${
                                 item.price
                               }`}
-                              className="btnView"
+                              className='btnView'
                             >
                               View
                             </Link>

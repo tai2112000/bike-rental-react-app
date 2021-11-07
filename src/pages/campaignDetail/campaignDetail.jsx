@@ -119,11 +119,8 @@ class campaignDetail extends Component {
       "http://18.138.110.46/api/v2/vouchers",
       requestOptions
     );
-    // const res = await response.json();
 
-    // if (res === true) {
     window.location.reload();
-    // }
   }
 
   onSave = (e) => {
@@ -190,7 +187,6 @@ class campaignDetail extends Component {
                 name='description'
                 type='text'
                 value={this.ongetAreaName(areaId)}
-                // onChange={this.onChange}
                 disabled={true}
               />
             </div>
@@ -214,6 +210,8 @@ class campaignDetail extends Component {
               <input
                 placeholder='Expired Date...'
                 type='date'
+                min='1997-01-01'
+                max='2030-12-31'
                 name='expiredDate'
                 value={this.formatChangeDate(expiredDate)}
                 onChange={this.onChange}
@@ -277,7 +275,6 @@ class campaignDetail extends Component {
                     </thead>
                     <tbody>
                       {listVoucher.map((item) => (
-                        
                         <tr key={item.id}>
                           <td>{item.name}</td>
                           <td>{item.description}</td>
@@ -303,7 +300,6 @@ class campaignDetail extends Component {
                             )}
                           </td>
                         </tr>
-                      
                       ))}
                     </tbody>
                   </table>

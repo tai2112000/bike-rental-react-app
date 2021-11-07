@@ -231,7 +231,6 @@ class Dashboard extends Component {
 
   render() {
     const { dashboardList } = this.state;
-    console.log(dashboardList);
     return (
       <div>
         <h2 className='page-header'>Dashboard</h2>

@@ -22,7 +22,6 @@ class Areas extends Component {
   render() {
     const { listArea } = this.state;
 
-    console.log(listArea);
     return (
       <div>
         <h2 className='page-header'>Areas</h2>

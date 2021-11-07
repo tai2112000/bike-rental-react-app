@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import callApi_V2 from "../../utils/apiCallerV2";
 import callApi from "../../utils/apiCaller.js";
-import "../pricelistDetail/priceListDetail.css"
+import "../pricelistDetail/priceListDetail.css";
 import Select from "react-select";
 import { Link } from "react-router-dom";
 class pricelistDetail extends Component {
@@ -9,11 +9,11 @@ class pricelistDetail extends Component {
     super(props);
     this.state = {
       areaId: "",
-      areaName:"",
-      motorTypeId:"",
-      motorTypeName:"",
+      areaName: "",
+      motorTypeId: "",
+      motorTypeName: "",
       newPrice: "",
-      oldPrice:"",
+      oldPrice: "",
       listArea: [],
       isShowSuccessful: 0,
       isDisableEdit: true,
@@ -28,19 +28,15 @@ class pricelistDetail extends Component {
       var areaId = match.params.areaId;
       var motorTypeId = match.params.motorTypeId;
       var oldPrice = match.params.oldPrice;
-      this.setState(
-        {
-          motorName: motorName,
-          motorTypeId: motorTypeId,
-          oldPrice: oldPrice,
-        }
-      )
+      this.setState({
+        motorName: motorName,
+        motorTypeId: motorTypeId,
+        oldPrice: oldPrice,
+      });
       callApi("motorTypes", "GET", null).then((res) => {
-        
         this.setState({
-          listMotorType: res.data
-        })
-      
+          listMotorType: res.data,
+        });
       });
       callApi(`areas/${areaId}`, "GET", null).then((res) => {
         var data = res.data;
@@ -77,15 +73,6 @@ class pricelistDetail extends Component {
 
   onSave = async (e) => {
     const { areaId, motorTypeId, newPrice } = this.state;
-    var { history } = this.props;
-    console.log(
-      "area: ",
-      areaId,
-      "type: ",
-      motorTypeId,
-      "price: ",
-      newPrice
-    );
     callApi(
       `pricelists?areaId=${areaId}&motorTypeId=${motorTypeId}&price=${newPrice}`,
       "PUT",
@@ -115,47 +102,46 @@ class pricelistDetail extends Component {
       isDisableEdit,
       isDisableCreateVoucher,
     } = this.state;
-    console.log(this.props);
 
     return (
       <div>
         <h2 className='page-header'>Price List Detail</h2>
         <form onSubmit={this.onSave}>
-        <div className="form-group">
+          <div className='form-group'>
             <label style={{ width: `150px` }}>Area</label>
-            <div className="Input">
-            <input
-              type='text'
-              value={areaName}
-              name='areaName'
-              onChange={this.onChange}
-              disabled={isDisableEdit}
-            />
-          </div>
+            <div className='Input'>
+              <input
+                type='text'
+                value={areaName}
+                name='areaName'
+                onChange={this.onChange}
+                disabled={isDisableEdit}
+              />
+            </div>
           </div>
           <div className='form-group'>
             <label style={{ width: `150px` }}>Type</label>
             <div className='Input'>
-            <input
-              type='text'
-              value={motorName}
-              name='motorName'
-              onChange={this.onChange}
-              disabled={isDisableEdit}
-            />
+              <input
+                type='text'
+                value={motorName}
+                name='motorName'
+                onChange={this.onChange}
+                disabled={isDisableEdit}
+              />
+            </div>
           </div>
-          </div>
-          <div className="form-group">
+          <div className='form-group'>
             <label style={{ width: `150px` }}>Price</label>
-            <div className="Input">
-            <input
-              type='text'
-              value={newPrice}
-              name='newPrice'
-              placeholder={oldPrice}
-              onChange={this.onChange}
-            />
-          </div>
+            <div className='Input'>
+              <input
+                type='text'
+                value={newPrice}
+                name='newPrice'
+                placeholder={oldPrice}
+                onChange={this.onChange}
+              />
+            </div>
           </div>
           <div className='buttonSave li'>
             <div onClick={this.onSave}>Edit</div>

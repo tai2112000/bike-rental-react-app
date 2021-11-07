@@ -14,27 +14,14 @@ class Campaign extends Component {
         label: null,
         value: null,
       },
-      pages: 1,
-      showNext: true,
     };
-    // this.onNext = this.onNext.bind(this);
-    // this.onPrev = this.onPrev.bind(this);
   }
 
   componentDidMount() {
     callApi("campaigns?page=1", "GET", null).then((res) => {
-      // res = null => not display btn next
-      if (res === null || res.data.data.length > 8) {
-        this.setState({
-          showNext: false,
-          listCampaign: res.data.data,
-        });
-      } else {
-        this.setState({
-          listCampaign: res.data.data,
-          showNext: true,
-        });
-      }
+      this.setState({
+        listCampaign: res.data.data,
+      });
     });
     callApi("areas", "GET", null).then((res) => {
       this.setState({
@@ -51,37 +38,10 @@ class Campaign extends Component {
         null
       ).then((res) => {
         if (prevState.listCampaign === this.state.listCampaign) {
-          // res < 8 => dont display next
-          if (res.data.length < 8 || res.data.length > 8) {
-            this.setState({
-              showNext: false,
-            });
-          } else
-            this.setState({
-              showNext: true,
-            });
-          //
           this.setState({
             listCampaign: res.data,
           });
         }
-      });
-    }
-
-    if (prevState.pages !== this.state.pages) {
-      callApi(`campaigns?page=${this.state.pages}`, "GET", null).then((res) => {
-        // res < 8 khi chuyen trang cuoi' cung`: dont show next
-        if (res.data.data.length < 8) {
-          this.setState({
-            showNext: false,
-          });
-        } else
-          this.setState({
-            showNext: true,
-          });
-        this.setState({
-          listCampaign: res.data.data,
-        });
       });
     }
   }
@@ -106,12 +66,6 @@ class Campaign extends Component {
     return areaName;
   }
 
-  // async onDelete(id) {
-  //   console.log();
-  //   callApi("campaigns", "DELETE", JSON.stringify(id)).then((res) => {
-  //     console.log(res);
-  //   });
-  // }
   async onDelete(id) {
     const requestOptions = {
       method: "DELETE",
@@ -128,31 +82,13 @@ class Campaign extends Component {
     window.location.reload();
   }
 
-  onNext(currentPage) {
-    if (currentPage === this.state.pages) {
-      this.setState({
-        pages: currentPage + 1,
-      });
-    }
-  }
-
-  onPrev(currentPage) {
-    if (currentPage === this.state.pages) {
-      if (currentPage != 0 && currentPage > 1) {
-        this.setState({
-          pages: currentPage - 1,
-        });
-      }
-    }
-  }
   render() {
-    const { listCampaign, areaOptions, pages, showNext } = this.state;
+    const { listCampaign, areaOptions } = this.state;
 
     const options = areaOptions.map((item) => ({
       label: item.name,
       value: item.id,
     }));
-    // console.log("asasa:" + options.label);
     return (
       <div>
         <h2 className='page-header'>Campaigns</h2>
@@ -160,11 +96,19 @@ class Campaign extends Component {
           <button className='btn-create'>Create Campaign</button>
         </Link>
         <div className='row'>
-          <h3 className='col-2'>Select Area</h3>
+          <h3
+            className='col-2'
+            style={{
+              display: `flex`,
+              flexDirection: `row`,
+              alignItems: `center`,
+            }}
+          >
+            Select Area
+          </h3>
           <Select
             className='col-6'
             style={{ marginBottom: "20px" }}
-            // defaultValue={options[0]}
             onChange={(value) =>
               this.setState({
                 selectedArea: value,
@@ -172,7 +116,7 @@ class Campaign extends Component {
             }
             options={options}
           />
-          <div className='col-12'>
+          <div className='col-12' style={{ marginTop: `20px` }}>
             <div className='card'>
               <div className='card__body'>
                 <div className='table-wrapper'>
@@ -221,28 +165,6 @@ class Campaign extends Component {
                 </div>
               </div>
             </div>
-          </div>
-          <div className={("col-12", "groupPaging")}>
-            {pages > 1 ? (
-              <div
-                className={("col-2", "onClick")}
-                onClick={() => this.onPrev(pages)}
-              >
-                Prev
-              </div>
-            ) : (
-              <div className='col-2'></div>
-            )}
-            {showNext ? (
-              <div
-                className={("col-2", "onClick")}
-                onClick={() => this.onNext(pages)}
-              >
-                Next
-              </div>
-            ) : (
-              <div className='col-2'></div>
-            )}
           </div>
         </div>
       </div>

@@ -33,7 +33,7 @@ class Customers extends Component {
   onSearch = () => {
     if (this.state.searchInput === "") {
       this.setState({
-        searchResult: null,
+        searchResult: "",
       });
     } else {
       callApi_V2(
@@ -84,9 +84,6 @@ class Customers extends Component {
 
   render() {
     const { listCustomer, searchInput, searchResult } = this.state;
-    // console.log(searchInput);
-    // console.log(listCustomer);
-
     return (
       <div>
         <h2 className='page-header'>Customers</h2>
@@ -125,6 +122,25 @@ class Customers extends Component {
                           <td>{searchResult.rewardPoints}</td>
                           <td>
                             {searchResult.status === 1 ? "Banned" : "Active"}
+                          </td>
+                          <td className='containerBtn'>
+                            {searchResult.status !== 1 ? (
+                              <button
+                                type='submit'
+                                className='btnDelete'
+                                onClick={() => this.onDelete(searchResult.id)}
+                              >
+                                Ban
+                              </button>
+                            ) : (
+                              <button
+                                type='submit'
+                                className='btnDelete'
+                                onClick={() => this.onUnBanned(searchResult.id)}
+                              >
+                                UnBanned
+                              </button>
+                            )}
                           </td>
                         </tr>
                       ) : (

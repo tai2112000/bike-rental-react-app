@@ -13,7 +13,6 @@ class Owner extends Component {
   }
 
   componentDidMount() {
-    console.log(localStorage.getItem("token"));
     callApi("owners?page=1", "GET", null).then((res) => {
       this.setState({
         listOwner: res.data.data,
@@ -75,12 +74,12 @@ class Owner extends Component {
 
     return (
       <div>
-        <h2 className="page-header">Owners</h2>
-        <div className="row">
-          <div className="col-12">
-            <div className="card">
-              <div className="card__body">
-                <div className="table-wrapper">
+        <h2 className='page-header'>Owners</h2>
+        <div className='row'>
+          <div className='col-12'>
+            <div className='card'>
+              <div className='card__body'>
+                <div className='table-wrapper'>
                   <table>
                     <thead>
                       <td>Name</td>
@@ -98,33 +97,33 @@ class Owner extends Component {
                         <tr key={item.id}>
                           <td>{item.fullname}</td>
                           <td>{item.phoneNumber}</td>
-                          <td>
-                            {item.address === null ? "Done have" : item.address}
-                          </td>
+                          <td>{item.address}</td>
                           <td>{item.numberOfBikes}</td>
-                          <td>{item.rating}</td>
+                          <td>
+                            {(Math.round(item.rating * 100) / 100).toFixed(2)}
+                          </td>
                           <td>{item.numberOfRatings}</td>
                           <td>{this.onGetAreaName(item.areaId)}</td>
                           <td>{item.status === 1 ? "Banned" : "Active"}</td>
-                          <td className="containerBtn">
+                          <td className='containerBtn'>
                             <Link
                               to={`bikeOfOwner/${item.id}`}
-                              className="btnViewBike"
+                              className='btnViewBike'
                             >
                               View Bike
                             </Link>
                             {item.status !== 1 ? (
                               <button
-                                type="submit"
-                                className="btnDelete"
+                                type='submit'
+                                className='btnDelete'
                                 onClick={() => this.onDelete(item.id)}
                               >
                                 Ban
                               </button>
                             ) : (
                               <button
-                                type="submit"
-                                className="btnDelete"
+                                type='submit'
+                                className='btnDelete'
                                 onClick={() => this.onUnBanned(item.id)}
                               >
                                 UnBanned
