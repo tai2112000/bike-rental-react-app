@@ -1,58 +1,63 @@
 .btnViewBike {
-  position: relative;
-  text-align: center;
-  width: 85px;
-  height: 30px;
-  background-color: rgb(98, 162, 236);
-  color: red;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  cursor: pointer;
+  position        : relative;
+  text-align      : center;
+  width           : 85px;
+  height          : 30px;
+  background-color: rgb(179, 206, 58);
+  color           : rgb(255, 255, 255);
+  border-radius   : 8px;
+  display         : flex;
+  flex-direction  : column;
+  justify-content : center;
+  cursor          : pointer;
 }
-.btnView:hover {
+
+.btnViewBike:hover {
   background-color: rgb(20, 224, 54);
+  color           : black;
 }
+
 .containerBtn {
   display: flex;
 }
 
 .btnDelete {
-  position: relative;
-  text-align: center;
-  width: 50px;
-  height: 30px;
+  position        : relative;
+  text-align      : center;
+  width           : 50px;
+  height          : 30px;
   background-color: red;
-  color: white;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  margin-left: 10px;
+  color           : white;
+  border-radius   : 8px;
+  display         : flex;
+  flex-direction  : column;
+  justify-content : center;
+  align-items     : center;
+  cursor          : pointer;
+  margin-left     : 10px;
 }
+
 .btnDelete:hover {
   background-color: rgb(20, 224, 54);
 }
 
 .btnActive {
-  position: relative;
-  text-align: center;
-  width: 50px;
-  height: 30px;
+  position        : relative;
+  text-align      : center;
+  width           : 50px;
+  height          : 30px;
   background-color: rgb(20, 224, 54);
-  color: red;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  margin-left: 10px;
+  color           : red;
+  border-radius   : 8px;
+  display         : flex;
+  flex-direction  : column;
+  justify-content : center;
+  align-items     : center;
+  cursor          : pointer;
+  margin-left     : 10px;
 }
+
 .btnDelete:hover {
   background-color: red;
-  color: black;
+  color           : black;
 }

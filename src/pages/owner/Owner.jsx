@@ -82,15 +82,15 @@ class Owner extends Component {
                 <div className='table-wrapper'>
                   <table>
                     <thead>
-                      <td>Name</td>
-                      <td>Phone Number</td>
-                      <td>Address</td>
-                      <td>Number Of Bike</td>
-                      <td>Rating</td>
-                      <td>Number Of Rating</td>
-                      <td>Area</td>
-                      <td>Status</td>
-                      <td>Event</td>
+                      <th>Name</th>
+                      <th>Phone Number</th>
+                      <th>Address</th>
+                      <th>Number Of Bike</th>
+                      <th>Rating</th>
+                      <th>Number Of Rating</th>
+                      <th>Area</th>
+                      <th>Status</th>
+                      <th>Event</th>
                     </thead>
                     <tbody>
                       {listOwner.map((item) => (

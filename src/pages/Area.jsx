@@ -38,8 +38,8 @@ class Areas extends Component {
                 <div className='table-wrapper'>
                   <table>
                     <thead>
-                      <td>Postal Code</td>
-                      <td>Name</td>
+                      <th>Postal Code</th>
+                      <th>Name</th>
                     </thead>
                     <tbody>
                       {listArea.map((item) => (

@@ -143,7 +143,13 @@ class Booking extends Component {
           </td>
           <td>{this.formatDate(row.dayRent)}</td>
           <td>{this.formatDate(row.dayReturnActual)}</td>
-          <td>{this.formatDate(row.dayReturnExpected)}</td>
+          {row.status === 2 ? (
+            <td>{this.formatDate(row.dayReturnExpected)}</td>
+          ) : row.status === 0 || row.status === 1 ? (
+            <td>waiting</td>
+          ) : (
+            <td>--</td>
+          )}
           <td>{`${row.price}VND`}</td>
           <td>{this.onGetAreaName(this.onGetAreaId(row.ownerId))}</td>
           <td>{this.getStatusName(row.status)}</td>
@@ -158,24 +164,24 @@ class Booking extends Component {
 
     return (
       <div>
-        <h2 className='page-header'>Bookings</h2>
-        <div className='row'>
-          <div className='col-12'>
-            <div className='card'>
-              <div className='card__body'>
-                <div className='table-wrapper'>
+        <h2 className="page-header">Bookings</h2>
+        <div className="row">
+          <div className="col-12">
+            <div className="card">
+              <div className="card__body">
+                <div className="table-wrapper">
                   <table>
                     <tr>
-                      <td>Customer name</td>
-                      <td>Owner Name</td>
-                      <td>Bike</td>
-                      <td>Day Rent</td>
-                      <td>Day return Actual</td>
-                      <td>Day return Expected</td>
-                      <td>Price</td>
-                      <td>Area</td>
-                      {/* <td>Payment method</td> */}
-                      <td>Status</td>
+                      <th>Customer name</th>
+                      <th>Owner Name</th>
+                      <th>Bike</th>
+                      <th>Day Rent</th>
+                      <th>Day return Actual</th>
+                      <th>Day return Expected</th>
+                      <th>Price</th>
+                      <th>Area</th>
+                      {/* <th>Payment method</th> */}
+                      <th>Status</th>
                     </tr>
                     <tbody>{this.renderRowBooking(listBooking)}</tbody>
                   </table>

@@ -263,15 +263,15 @@ class campaignDetail extends Component {
                 <div className='table-wrapper'>
                   <table>
                     <thead>
-                      <td>Name</td>
-                      <td>Description</td>
-                      <td>Percent</td>
-                      <td>MaxAmount</td>
-                      <td>StartingDate</td>
-                      <td>ExpiredDate</td>
-                      <td>Items Remain</td>
-                      <td>Status</td>
-                      <td>Event</td>
+                      <th>Name</th>
+                      <th>Description</th>
+                      <th>Percent</th>
+                      <th>MaxAmount</th>
+                      <th>StartingDate</th>
+                      <th>ExpiredDate</th>
+                      <th>Items Remain</th>
+                      <th>Status</th>
+                      <th>Event</th>
                     </thead>
                     <tbody>
                       {listVoucher.map((item) => (

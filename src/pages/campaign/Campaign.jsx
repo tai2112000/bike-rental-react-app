@@ -122,12 +122,12 @@ class Campaign extends Component {
                 <div className='table-wrapper'>
                   <table>
                     <thead>
-                      <td>Description</td>
-                      <td>Area</td>
-                      <td>Starting Date</td>
-                      <td>Expired Date</td>
-                      <td>Status</td>
-                      <td>Event</td>
+                      <th>Description</th>
+                      <th>Area</th>
+                      <th>Starting Date</th>
+                      <th>Expired Date</th>
+                      <th>Status</th>
+                      <th>Event</th>
                     </thead>
                     <tbody>
                       {listCampaign.map((item) => (

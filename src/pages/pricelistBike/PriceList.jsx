@@ -66,10 +66,10 @@ class Pricelist extends Component {
                 <div className='table-wrapper'>
                   <table>
                     <thead>
-                      <td>Area</td>
-                      <td>Type</td>
-                      <td>Price</td>
-                      <td></td>
+                      <th>Area</th>
+                      <th>Type</th>
+                      <th>Price</th>
+                      <th></th>
                     </thead>
                     <tbody>
                       {listPrice.map((item) => (

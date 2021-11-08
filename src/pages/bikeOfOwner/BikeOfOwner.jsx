@@ -81,13 +81,13 @@ class BikeOfOwner extends Component {
                 <div className='table-wrapper'>
                   <table>
                     <thead>
-                      <td>License Plate</td>
-                      <td>Brand</td>
-                      <td>Category</td>
-                      <td>Color</td>
-                      <td>Model Year</td>
-                      <td>Status</td>
-                      <td>Event</td>
+                      <th>License Plate</th>
+                      <th>Brand</th>
+                      <th>Category</th>
+                      <th>Color</th>
+                      <th>Model Year</th>
+                      <th>Status</th>
+                      <th>Event</th>
                     </thead>
                     <tbody>
                       {listBike.map((item) => (

@@ -13,8 +13,8 @@
   text-align      : center;
   width           : 50px;
   height          : 30px;
-  background-color: rgb(98, 162, 236);
-  color           : red;
+  background-color: rgb(179, 206, 58);
+  color           : rgb(255, 255, 255);
   border-radius   : 8px;
   display         : flex;
   flex-direction  : column;
@@ -24,6 +24,7 @@
 
 .btnView:hover {
   background-color: rgb(20, 224, 54);
+  color           : black;
 }
 
 .containerBtn {
@@ -48,4 +49,5 @@
 
 .btnDelete:hover {
   background-color: rgb(20, 224, 54);
+  color           : black;
 }

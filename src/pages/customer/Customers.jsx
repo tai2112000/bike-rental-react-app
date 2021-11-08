@@ -109,10 +109,10 @@ class Customers extends Component {
                 <div className='table-wrapper'>
                   <table>
                     <thead>
-                      <td>Name</td>
-                      <td>Phone Number</td>
-                      <td>Reward Point</td>
-                      <td>Status</td>
+                      <th>Name</th>
+                      <th>Phone Number</th>
+                      <th>Reward Point</th>
+                      <th>Status</th>
                     </thead>
                     <tbody>
                       {searchResult ? (
