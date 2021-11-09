@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import callApi from "../utils/apiCaller";
 import callApi_V2 from "../utils/apiCallerV2";
 class Booking extends Component {
@@ -102,7 +103,7 @@ class Booking extends Component {
     return bikeLicensePlate;
   };
 
-  formatDate = (date, format = "mm/dd/yy") => {
+  formatDate = (date, format = "dd/mm/yyyy") => {
     let d = new Date(date);
     const map = {
       mm: d.getMonth() + 1,
@@ -110,7 +111,7 @@ class Booking extends Component {
       yy: d.getFullYear().toString().slice(-2),
       yyyy: d.getFullYear(),
     };
-    return format.replace(/mm|dd|yy/gi, (matched) => map[matched]);
+    return format.replace(/dd|mm|yyyy/gi, (matched) => map[matched]);
   };
 
   getStatusName(status) {
@@ -142,17 +143,22 @@ class Booking extends Component {
             {this.onGetBikeLicensePlate(row.bikeId)}
           </td>
           <td>{this.formatDate(row.dayRent)}</td>
-          <td>{this.formatDate(row.dayReturnActual)}</td>
           {row.status === 2 ? (
-            <td>{this.formatDate(row.dayReturnExpected)}</td>
+            <td>{this.formatDate(row.dayReturnActual)}</td>
           ) : row.status === 0 || row.status === 1 ? (
             <td>waiting</td>
           ) : (
             <td>--</td>
           )}
+          <td>{this.formatDate(row.dayReturnExpected)}</td>
           <td>{`${row.price}VND`}</td>
           <td>{this.onGetAreaName(this.onGetAreaId(row.ownerId))}</td>
           <td>{this.getStatusName(row.status)}</td>
+          <td>
+            <Link to={`bookingDetail/${row.id}`} className='btnView'>
+              Detail
+            </Link>
+          </td>
         </tr>
       );
     });
@@ -164,12 +170,12 @@ class Booking extends Component {
 
     return (
       <div>
-        <h2 className="page-header">Bookings</h2>
-        <div className="row">
-          <div className="col-12">
-            <div className="card">
-              <div className="card__body">
-                <div className="table-wrapper">
+        <h2 className='page-header'>Bookings</h2>
+        <div className='row'>
+          <div className='col-12'>
+            <div className='card'>
+              <div className='card__body'>
+                <div className='table-wrapper'>
                   <table>
                     <tr>
                       <th>Customer name</th>

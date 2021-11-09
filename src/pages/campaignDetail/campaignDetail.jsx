@@ -85,7 +85,7 @@ class campaignDetail extends Component {
     return format.replace(/yyyy|mm|dd/gi, (matched) => map[matched]);
   };
 
-  formatDate = (date, format = "yyyy-mm-dd") => {
+  formatDate = (date, format = "dd/mm/yyyy") => {
     let d = new Date(date);
     const map = {
       mm: d.getMonth() + 1,
@@ -93,7 +93,7 @@ class campaignDetail extends Component {
       yy: d.getFullYear().toString().slice(-2),
       yyyy: d.getFullYear(),
     };
-    return format.replace(/yyyy|mm|dd/gi, (matched) => map[matched]);
+    return format.replace(/dd|mm|yyyy/gi, (matched) => map[matched]);
   };
 
   onChange = (e) => {

@@ -45,7 +45,7 @@ class Campaign extends Component {
       });
     }
   }
-  formatDate = (date, format = "dd/mm/yy") => {
+  formatDate = (date, format = "dd/mm/yyyy") => {
     let d = new Date(date);
     const map = {
       mm: d.getMonth() + 1,
@@ -53,7 +53,7 @@ class Campaign extends Component {
       yy: d.getFullYear().toString().slice(-2),
       yyyy: d.getFullYear(),
     };
-    return format.replace(/dd|mm|yy/gi, (matched) => map[matched]);
+    return format.replace(/dd|mm|yyyy/gi, (matched) => map[matched]);
   };
 
   ongetAreaName(areaId) {

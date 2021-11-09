@@ -19,6 +19,7 @@ import Pricelist from "../pages/pricelistBike/PriceList";
 import CreatePriceList from "../pages/createPriceList/CreatePriceList";
 import PriceListDetail from "../pages/pricelistDetail/PriceListDetail";
 import BikeDetail from "../pages/bikeDetail/bikeDetail";
+import BookingDetail from "../pages/bookingDetail/BookingDetail";
 const Routes = () => {
   return (
     <Switch>
@@ -58,6 +59,10 @@ const Routes = () => {
       <Route
         path='/bikeDetail/:bikeID'
         component={({ match }) => <BikeDetail match={match} />}
+      />
+      <Route
+        path='/bookingDetail/:bookingID'
+        component={({ match }) => <BookingDetail match={match} />}
       />
     </Switch>
   );
